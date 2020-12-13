@@ -6,5 +6,7 @@ target 'parkingHere' do
   use_frameworks!
 
   # Pods for parkingHere
+  pod 'Alamofire', '~> 5.2'
+
 
 end
