@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var alarmTime: UILabel!
     @IBOutlet weak var memo: UITextView!
-    @IBOutlet weak var parkingButton: UIButton!
+    @IBOutlet weak var startParkingButton: UIButton!
     @IBOutlet weak var addCarButton: UIButton!
     @IBOutlet weak var resetCarButton: UIButton!
     @IBAction func didTapResetCarButton(_ sender: Any) {
@@ -50,7 +50,7 @@ class MainViewController: UIViewController {
         self.openCamera()
     }
     
-    @IBAction func didTapParkingButton(_ sender: Any) {
+    @IBAction func didTapStartParkingButton(_ sender: Any) {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ParkingVC") else {
             return
         }
@@ -72,7 +72,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        parkingButton.layer.cornerRadius = parkingButton.bounds.height / 2
+        startParkingButton.layer.cornerRadius = startParkingButton.bounds.height / 2
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -90,7 +90,7 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="주차를 시작합니다"/>
                                         <connections>
-                                            <action selector="didTapParkingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9K-Ga-NKj"/>
+                                            <action selector="didTapStartParkingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NYe-BP-u4s"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -113,8 +113,8 @@
                         <outlet property="carImage" destination="JxV-rr-lVY" id="eYw-tp-uyh"/>
                         <outlet property="datePicker" destination="kzD-lE-NYl" id="52X-aV-gI3"/>
                         <outlet property="memo" destination="0uq-bx-Uic" id="NkK-uF-UDz"/>
-                        <outlet property="parkingButton" destination="N1Z-PA-79w" id="NHI-0H-7pS"/>
                         <outlet property="resetCarButton" destination="kiR-CN-OI7" id="cwC-X1-VVA"/>
+                        <outlet property="startParkingButton" destination="N1Z-PA-79w" id="AGE-hD-aAv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -154,7 +154,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ck3-xZ-hEc">
                                         <rect key="frame" x="0.0" y="718" width="394" height="80"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="주차를 종료합니다">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="didTabENdParkingButton:" destination="CeX-Nm-iZ3" eventType="touchUpInside" id="zgi-7N-xN5"/>
                                         </connections>
@@ -175,6 +178,9 @@
                             <constraint firstItem="Iji-la-ZPd" firstAttribute="bottom" secondItem="HWH-mP-Aim" secondAttribute="bottom" constant="10" id="wIS-GS-tcc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="endParkingButton" destination="ck3-xZ-hEc" id="RNf-Ud-5uB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xfb-gW-S61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
