@@ -7,6 +7,7 @@ target 'parkingHere' do
 
   # Pods for parkingHere
   pod 'Alamofire', '~> 5.2'
+  pod 'IQKeyboardManagerSwift', '6.3.0'  
 
 
 end
