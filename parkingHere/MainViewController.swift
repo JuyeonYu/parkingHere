@@ -51,16 +51,6 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func didTapParkingButton(_ sender: Any) {
-//        isParking.toggle()
-        
-//        if isParking {
-//            parkingButton.setTitle("주차를 종료합니다", for: .normal)
-//            parkingButton.backgroundColor = .red
-//        } else {
-//            parkingButton.setTitle("주차를 시작합니다", for: .normal)
-//            parkingButton.backgroundColor = .yellow
-//        }
-        
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ParkingVC") else {
             return
         }
