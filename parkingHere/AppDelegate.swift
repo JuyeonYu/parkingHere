@@ -3,7 +3,6 @@
 //  parkingHere
 //
 //  Created by Juyeon on 2020/12/13.
-// test
 
 import UIKit
 
