@@ -62,22 +62,8 @@
                                             <constraint firstAttribute="bottom" secondItem="JxV-rr-lVY" secondAttribute="bottom" constant="-20" id="vBA-pj-hoQ"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="djo-Qi-eik">
-                                        <rect key="frame" x="0.0" y="379" width="394" height="216"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IKD-xT-NRc">
-                                                <rect key="frame" x="0.0" y="97.5" width="19" height="19.5"/>
-                                                <color key="tintColor" red="0.97019964459999997" green="0.87431508300000005" blue="0.34590119120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </imageView>
-                                            <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kzD-lE-NYl">
-                                                <rect key="frame" x="24" y="0.0" width="370" height="216"/>
-                                                <color key="backgroundColor" red="0.97019964459999997" green="0.87431508300000005" blue="0.34590119120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="tintColor" red="0.59620219470000002" green="0.60643571620000003" blue="0.61041432620000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </datePicker>
-                                        </subviews>
-                                    </stackView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="간단 메모" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0uq-bx-Uic">
-                                        <rect key="frame" x="0.0" y="615" width="394" height="83"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="간단메모" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0uq-bx-Uic">
+                                        <rect key="frame" x="0.0" y="379" width="394" height="319"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -110,9 +96,8 @@
                     </view>
                     <connections>
                         <outlet property="addCarButton" destination="QUM-6B-cxU" id="Soz-2l-ixU"/>
-                        <outlet property="carImage" destination="JxV-rr-lVY" id="eYw-tp-uyh"/>
-                        <outlet property="datePicker" destination="kzD-lE-NYl" id="52X-aV-gI3"/>
-                        <outlet property="memo" destination="0uq-bx-Uic" id="NkK-uF-UDz"/>
+                        <outlet property="carImageView" destination="JxV-rr-lVY" id="2Sq-XZ-m54"/>
+                        <outlet property="memoTextField" destination="0uq-bx-Uic" id="GfM-xY-n8p"/>
                         <outlet property="resetCarButton" destination="kiR-CN-OI7" id="cwC-X1-VVA"/>
                         <outlet property="startParkingButton" destination="N1Z-PA-79w" id="AGE-hD-aAv"/>
                     </connections>
@@ -130,36 +115,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HWH-mP-Aim">
-                                <rect key="frame" x="10" y="54" width="394" height="798"/>
+                                <rect key="frame" x="20" y="54" width="374" height="798"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="L3O-hO-7j9">
-                                        <rect key="frame" x="0.0" y="1.5" width="394" height="396.5"/>
-                                        <color key="tintColor" red="0.97019964459999997" green="0.87431508300000005" blue="0.34590119120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="1.5" width="374" height="396.5"/>
+                                        <color key="tintColor" red="0.59620219470000002" green="0.60643571620000003" blue="0.61041432620000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="00:00:01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d81-ai-O1I">
-                                        <rect key="frame" x="0.0" y="419" width="394" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="748" text="00:00:01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d81-ai-O1I">
+                                        <rect key="frame" x="0.0" y="419" width="374" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="memo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMn-Ig-lcj">
-                                        <rect key="frame" x="0.0" y="480" width="394" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="499" width="374" height="89.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yuW-o2-Y4O">
-                                        <rect key="frame" x="0.0" y="520.5" width="394" height="177.5"/>
-                                    </mapView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORh-YA-Nwq">
+                                        <rect key="frame" x="0.0" y="608.5" width="374" height="89.5"/>
+                                        <color key="backgroundColor" red="0.97019964459999997" green="0.87431508300000005" blue="0.34590119120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Track Car" image="location.fill.viewfinder" catalog="system">
+                                            <color key="titleColor" systemColor="linkColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapTrackCarButton:" destination="CeX-Nm-iZ3" eventType="touchUpInside" id="nYj-S4-1iJ"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ck3-xZ-hEc">
-                                        <rect key="frame" x="0.0" y="718" width="394" height="80"/>
+                                        <rect key="frame" x="0.0" y="718" width="374" height="80"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="주차를 종료합니다">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTabENdParkingButton:" destination="CeX-Nm-iZ3" eventType="touchUpInside" id="zgi-7N-xN5"/>
+                                            <action selector="didTabEndParkingButton:" destination="CeX-Nm-iZ3" eventType="touchUpInside" id="Jnw-oa-FdK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -173,13 +165,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HWH-mP-Aim" firstAttribute="top" secondItem="Iji-la-ZPd" secondAttribute="top" constant="10" id="Enm-cS-QEb"/>
-                            <constraint firstItem="Iji-la-ZPd" firstAttribute="trailing" secondItem="HWH-mP-Aim" secondAttribute="trailing" constant="10" id="GW2-Du-LQL"/>
-                            <constraint firstItem="HWH-mP-Aim" firstAttribute="leading" secondItem="Iji-la-ZPd" secondAttribute="leading" constant="10" id="SkQ-Qg-GwX"/>
+                            <constraint firstItem="Iji-la-ZPd" firstAttribute="trailing" secondItem="HWH-mP-Aim" secondAttribute="trailing" constant="20" id="GW2-Du-LQL"/>
+                            <constraint firstItem="HWH-mP-Aim" firstAttribute="leading" secondItem="Iji-la-ZPd" secondAttribute="leading" constant="20" id="SkQ-Qg-GwX"/>
                             <constraint firstItem="Iji-la-ZPd" firstAttribute="bottom" secondItem="HWH-mP-Aim" secondAttribute="bottom" constant="10" id="wIS-GS-tcc"/>
+                            <constraint firstItem="ORh-YA-Nwq" firstAttribute="height" secondItem="ghe-jq-iEQ" secondAttribute="height" multiplier="0.1" id="xfM-fu-7Qo"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="carImageView" destination="L3O-hO-7j9" id="exC-rp-H7c"/>
                         <outlet property="endParkingButton" destination="ck3-xZ-hEc" id="RNf-Ud-5uB"/>
+                        <outlet property="memoLabel" destination="yMn-Ig-lcj" id="t28-QJ-Fqc"/>
+                        <outlet property="parkingTimeLabel" destination="d81-ai-O1I" id="6tc-bd-scw"/>
+                        <outlet property="trackCarButton" destination="ORh-YA-Nwq" id="7hw-ni-hpX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xfb-gW-S61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -188,12 +185,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alarm.fill" catalog="system" width="124" height="128"/>
         <image name="arrow.clockwise.circle.fill" catalog="system" width="128" height="121"/>
         <image name="car.fill" catalog="system" width="128" height="93"/>
+        <image name="location.fill.viewfinder" catalog="system" width="128" height="115"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
