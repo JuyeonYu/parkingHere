@@ -15,6 +15,7 @@
 		CE69A8F325860BEB00C3B1E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE69A8F225860BEB00C3B1E1 /* Assets.xcassets */; };
 		CE69A8F625860BEB00C3B1E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE69A8F425860BEB00C3B1E1 /* LaunchScreen.storyboard */; };
 		CE69A91F258629DA00C3B1E1 /* ParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */; };
+		CEDEB0242587C9A0000EBF1B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB0232587C9A0000EBF1B /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		CE69A8F525860BEB00C3B1E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE69A8F725860BEB00C3B1E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
+		CEDEB0232587C9A0000EBF1B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E7EDDA3CB86020B4DAEEBEE3 /* Pods-parkingHere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parkingHere.debug.xcconfig"; path = "Target Support Files/Pods-parkingHere/Pods-parkingHere.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 				CE69A8EB25860BEA00C3B1E1 /* SceneDelegate.swift */,
 				CE69A8ED25860BEA00C3B1E1 /* MainViewController.swift */,
 				CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */,
+				CEDEB0232587C9A0000EBF1B /* MapViewController.swift */,
 				CE69A8EF25860BEA00C3B1E1 /* Main.storyboard */,
 				CE69A8F225860BEB00C3B1E1 /* Assets.xcassets */,
 				CE69A8F425860BEB00C3B1E1 /* LaunchScreen.storyboard */,
@@ -211,6 +214,7 @@
 				CE69A8EE25860BEA00C3B1E1 /* MainViewController.swift in Sources */,
 				CE69A91F258629DA00C3B1E1 /* ParkingViewController.swift in Sources */,
 				CE69A8EA25860BEA00C3B1E1 /* AppDelegate.swift in Sources */,
+				CEDEB0242587C9A0000EBF1B /* MapViewController.swift in Sources */,
 				CE69A8EC25860BEA00C3B1E1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,6 +20,9 @@ class ParkingViewController: UIViewController {
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var trackCarButton: UIButton!
     @IBAction func didTapTrackCarButton(_ sender: Any) {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as? MapViewController else { return }
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     fileprivate func initParkingInformation() {
@@ -27,6 +30,8 @@ class ParkingViewController: UIViewController {
         UserDefaults.standard.set(nil, forKey: "parkingTime")
         UserDefaults.standard.set(nil, forKey: "memo")
         UserDefaults.standard.set(nil, forKey: "carImage")
+        UserDefaults.standard.set(nil, forKey: "latitude")
+        UserDefaults.standard.set(nil, forKey: "longitude")
     }
     
     @IBAction func didTabEndParkingButton(_ sender: Any) {

@@ -183,12 +183,70 @@
             </objects>
             <point key="canvasLocation" x="1063" y="111"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="1EC-d3-pbF">
+            <objects>
+                <viewController storyboardIdentifier="MapVC" id="TFQ-0n-2IM" customClass="MapViewController" customModule="parkingHere" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EhA-gl-uVp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3eo-6N-Cer">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAA-Nc-MLi">
+                                <rect key="frame" x="364" y="64.5" width="30" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="22P-r1-lhx"/>
+                                    <constraint firstAttribute="width" constant="30" id="tGw-c3-fYa"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" backgroundImage="xmark.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapCloseButton:" destination="TFQ-0n-2IM" eventType="touchUpInside" id="ccx-yF-ZHv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cen-zE-OJU">
+                                <rect key="frame" x="364" y="812.5" width="30" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="7TE-cD-1eK"/>
+                                    <constraint firstAttribute="height" constant="30" id="ygP-aD-t19"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="location.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapCurruntLocationButton:" destination="TFQ-0n-2IM" eventType="touchUpInside" id="XFH-QR-OpM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pjB-6n-qun"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vAA-Nc-MLi" firstAttribute="top" secondItem="pjB-6n-qun" secondAttribute="top" constant="20" id="1dg-yA-WlZ"/>
+                            <constraint firstItem="pjB-6n-qun" firstAttribute="bottom" secondItem="3eo-6N-Cer" secondAttribute="bottom" id="50S-iA-m6g"/>
+                            <constraint firstItem="pjB-6n-qun" firstAttribute="trailing" secondItem="3eo-6N-Cer" secondAttribute="trailing" id="LNG-Uy-MQ4"/>
+                            <constraint firstItem="3eo-6N-Cer" firstAttribute="leading" secondItem="pjB-6n-qun" secondAttribute="leading" id="Udt-oa-6SJ"/>
+                            <constraint firstItem="pjB-6n-qun" firstAttribute="trailing" secondItem="Cen-zE-OJU" secondAttribute="trailing" constant="20" id="cbW-yN-Mh8"/>
+                            <constraint firstItem="pjB-6n-qun" firstAttribute="bottom" secondItem="Cen-zE-OJU" secondAttribute="bottom" constant="20" id="mhF-Nj-AOY"/>
+                            <constraint firstItem="pjB-6n-qun" firstAttribute="trailing" secondItem="vAA-Nc-MLi" secondAttribute="trailing" constant="20" id="pUM-T3-LlZ"/>
+                            <constraint firstItem="3eo-6N-Cer" firstAttribute="top" secondItem="pjB-6n-qun" secondAttribute="top" id="tuI-PL-g4J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="3eo-6N-Cer" id="43C-EO-60j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exT-GE-hlZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2066.666666666667" y="64.955357142857139"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.clockwise.circle.fill" catalog="system" width="128" height="121"/>
         <image name="car.fill" catalog="system" width="128" height="93"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="location.fill.viewfinder" catalog="system" width="128" height="115"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainViewController: UIViewController {
     var hasImage: Bool = false
@@ -15,6 +16,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var startParkingButton: UIButton!
     @IBOutlet weak var addCarButton: UIButton!
     @IBOutlet weak var resetCarButton: UIButton!
+    
+    var locationManager: CLLocationManager!
     
     @IBAction func didTapResetCarButton(_ sender: Any) {
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
@@ -56,9 +59,14 @@ class MainViewController: UIViewController {
         if hasImage {
             UserDefaults.standard.set(carImageView.image?.pngData(), forKey: "carImage")
         }
+        
+        UserDefaults.standard.set(locationManager.location?.coordinate.longitude, forKey: "longitude")
+        UserDefaults.standard.set(locationManager.location?.coordinate.latitude, forKey: "latitude")
     }
     
     @IBAction func didTapStartParkingButton(_ sender: Any) {
+        let coordinate = locationManager.location?.coordinate
+        findAddr(lat: coordinate!.latitude, long: coordinate!.longitude)
         saveParkingInformation()
         goParkingVC()
     }
@@ -69,6 +77,14 @@ class MainViewController: UIViewController {
         vc.allowsEditing = true
         vc.delegate = self
         present(vc, animated: true)
+    }
+    
+    fileprivate func initLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
     }
     
     override func viewDidLoad() {
@@ -94,6 +110,8 @@ class MainViewController: UIViewController {
                                                selector: #selector(goParkingVC),
                                                name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
+        
+        initLocationManager()
     }
     
     @objc func goParkingVC() {
@@ -115,6 +133,25 @@ class MainViewController: UIViewController {
             }
             self.present(vc, animated: true)
         }
+    }
+    
+    func findAddr(lat: CLLocationDegrees, long: CLLocationDegrees) {
+        let findLocation = CLLocation(latitude: lat, longitude: long)
+        let geocoder = CLGeocoder()
+        let locale = Locale(identifier: "Ko-kr")
+        
+        geocoder.reverseGeocodeLocation(findLocation, preferredLocale: locale, completionHandler: {(placemarks, error) in
+            if let address: [CLPlacemark] = placemarks {
+                var myAdd: String = ""
+                if let area: String = address.last?.locality{
+                    myAdd += area
+                }
+                if let name: String = address.last?.name {
+                    myAdd += " "
+                    myAdd += name
+                }
+            }
+        })
     }
 }
 
@@ -148,4 +185,8 @@ extension MainViewController: UITextViewDelegate {
         }
         textView.textColor = .gray
     }
+}
+
+extension MainViewController: CLLocationManagerDelegate {
+    
 }
