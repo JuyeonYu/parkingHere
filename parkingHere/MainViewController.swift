@@ -136,9 +136,16 @@ extension MainViewController: UIImagePickerControllerDelegate {
 
 extension MainViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "간단 메모" {
+        if textView.text == "간단메모" {
             textView.text = ""
         }
         textView.textColor = .label
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "간단메모"
+        }
+        textView.textColor = .gray
     }
 }
