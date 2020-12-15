@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -239,6 +239,58 @@
             </objects>
             <point key="canvasLocation" x="2066.666666666667" y="64.955357142857139"/>
         </scene>
+        <!--Image Detail View Controller-->
+        <scene sceneID="dK2-wN-x9j">
+            <objects>
+                <viewController storyboardIdentifier="ImageDetailVC" id="wRd-8m-z0H" customClass="ImageDetailViewController" customModule="parkingHere" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dEC-Lh-A0v">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZFW-ff-I8o">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-89-yYZ">
+                                        <rect key="frame" x="0.0" y="52" width="414" height="691"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="StT-TL-1QF"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="sM4-ie-i8y"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktz-vh-Lev">
+                                <rect key="frame" x="364" y="64" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Kmc-ks-cV4"/>
+                                    <constraint firstAttribute="width" constant="30" id="tlw-JV-lpq"/>
+                                </constraints>
+                                <state key="normal" image="xmark" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapCloseButton:" destination="wRd-8m-z0H" eventType="touchUpInside" id="dXY-np-nIN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tjc-6f-Tly"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ZFW-ff-I8o" secondAttribute="bottom" id="6nE-T4-HU8"/>
+                            <constraint firstAttribute="trailing" secondItem="ZFW-ff-I8o" secondAttribute="trailing" id="K2Q-Mv-2KY"/>
+                            <constraint firstItem="ZFW-ff-I8o" firstAttribute="leading" secondItem="dEC-Lh-A0v" secondAttribute="leading" id="W4S-Ux-gIC"/>
+                            <constraint firstItem="ZFW-ff-I8o" firstAttribute="top" secondItem="Tjc-6f-Tly" secondAttribute="top" id="Ybb-oK-yd4"/>
+                            <constraint firstItem="Ktz-vh-Lev" firstAttribute="top" secondItem="Tjc-6f-Tly" secondAttribute="top" constant="20" id="wcs-3j-Rdg"/>
+                            <constraint firstItem="Tjc-6f-Tly" firstAttribute="trailing" secondItem="Ktz-vh-Lev" secondAttribute="trailing" constant="20" id="x3J-zc-lUq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="ATz-89-yYZ" id="rxW-16-Rhe"/>
+                        <outlet property="scrollView" destination="ZFW-ff-I8o" id="0Qm-nZ-214"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0lS-c6-lwP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2898.5507246376815" y="-370.3125"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.clockwise.circle.fill" catalog="system" width="128" height="121"/>
@@ -246,6 +298,7 @@
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="location.fill.viewfinder" catalog="system" width="128" height="115"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

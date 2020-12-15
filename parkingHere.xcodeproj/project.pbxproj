@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B00D131448E8537F826E200A /* Pods_parkingHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFF474D1456F5B9AC4DADBE /* Pods_parkingHere.framework */; };
 		CE1C1A042587E0760054A6AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE1C1A062587E0760054A6AA /* InfoPlist.strings */; };
+		CE1C1A0D2589017C0054A6AA /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C1A0C2589017C0054A6AA /* ImageDetailViewController.swift */; };
 		CE69A8EA25860BEA00C3B1E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A8E925860BEA00C3B1E1 /* AppDelegate.swift */; };
 		CE69A8EC25860BEA00C3B1E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A8EB25860BEA00C3B1E1 /* SceneDelegate.swift */; };
 		CE69A8EE25860BEA00C3B1E1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A8ED25860BEA00C3B1E1 /* MainViewController.swift */; };
@@ -31,6 +32,7 @@
 		CE1C1A082587E0810054A6AA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE1C1A092587E0810054A6AA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CE1C1A0A2587E0820054A6AA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CE1C1A0C2589017C0054A6AA /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		CE69A8E625860BEA00C3B1E1 /* parkingHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parkingHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE69A8E925860BEA00C3B1E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE69A8EB25860BEA00C3B1E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				CE69A8EB25860BEA00C3B1E1 /* SceneDelegate.swift */,
 				CE69A8ED25860BEA00C3B1E1 /* MainViewController.swift */,
 				CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */,
+				CE1C1A0C2589017C0054A6AA /* ImageDetailViewController.swift */,
 				CEDEB0232587C9A0000EBF1B /* MapViewController.swift */,
 				CEDEB0362587DCA1000EBF1B /* Localizable.strings */,
 				CE1C1A062587E0760054A6AA /* InfoPlist.strings */,
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE69A8EE25860BEA00C3B1E1 /* MainViewController.swift in Sources */,
+				CE1C1A0D2589017C0054A6AA /* ImageDetailViewController.swift in Sources */,
 				CE69A91F258629DA00C3B1E1 /* ParkingViewController.swift in Sources */,
 				CE69A8EA25860BEA00C3B1E1 /* AppDelegate.swift in Sources */,
 				CEDEB0242587C9A0000EBF1B /* MapViewController.swift in Sources */,

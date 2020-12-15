@@ -22,6 +22,7 @@ class MapViewController: UIViewController {
         
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
+        mapView.delegate = self
 
         let longitudeParking = UserDefaults.standard.double(forKey: "longitude")
         let latitudeParking = UserDefaults.standard.double(forKey: "latitude")
@@ -45,4 +46,29 @@ class MapViewController: UIViewController {
     }
     */
 
+}
+
+extension MapViewController: MKMapViewDelegate {
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if !(annotation is MKPointAnnotation) {
+//            return nil
+//        }
+//                
+//        let annotationIdentifier = "mapVC"
+//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+//
+//        if annotationView == nil {
+//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+//            annotationView!.canShowCallout = true
+//        } else {
+//            annotationView!.annotation = annotation
+//        }
+//
+//        let pinImage = UIImage(systemName: "car.fill")
+//        annotationView!.image = pinImage
+//        pinImage?.withRenderingMode(.alwaysOriginal)
+//        annotationView?.tintColor = .red
+//        
+//       return annotationView
+//    }
 }

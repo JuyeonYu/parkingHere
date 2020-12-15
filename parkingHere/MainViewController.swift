@@ -74,8 +74,9 @@ class MainViewController: UIViewController {
     func openCamera() {
         let vc = UIImagePickerController()
         vc.sourceType = .camera
-        vc.allowsEditing = true
+//        vc.allowsEditing = true
         vc.delegate = self
+
         present(vc, animated: true)
     }
     
@@ -97,6 +98,9 @@ class MainViewController: UIViewController {
         
         startParkingButton.setTitle(NSLocalizedString("start parking", comment: ""), for: .normal)
         memoTextField.text = NSLocalizedString("memo", comment: "")
+        
+        carImageView.isUserInteractionEnabled = true
+        carImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCarImageView)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +119,17 @@ class MainViewController: UIViewController {
                                                object: nil)
         
         initLocationManager()
+    }
+    
+    @objc func didTapCarImageView() {
+        guard addCarButton.isHidden else {
+            return
+        }
+        
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailVC") as? ImageDetailViewController else { return }
+        vc.modalPresentationStyle = .fullScreen
+        vc.image = carImageView.image
+        self.present(vc, animated: true)
     }
     
     @objc func goParkingVC() {
@@ -163,14 +178,13 @@ extension MainViewController: UINavigationControllerDelegate {
 
 extension MainViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-
-            guard let image = info[.editedImage] as? UIImage else {
+        guard let image = info[.originalImage] as? UIImage else {
                 print("No image found")
                 return
             }
-        self.carImageView.image = image
-        hasImage = true
+            self.carImageView.image = image
+            hasImage = true
+            picker.dismiss(animated: true)
     }
 }
 
