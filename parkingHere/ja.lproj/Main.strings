@@ -1,0 +1,18 @@
+
+/* Class = "UITextView"; text = "간단메모"; ObjectID = "0uq-bx-Uic"; */
+"0uq-bx-Uic.text" = "간단메모";
+
+/* Class = "UIButton"; normalTitle = "주차를 시작합니다"; ObjectID = "N1Z-PA-79w"; */
+"N1Z-PA-79w.normalTitle" = "주차를 시작합니다";
+
+/* Class = "UIButton"; normalTitle = "Track Car"; ObjectID = "ORh-YA-Nwq"; */
+"ORh-YA-Nwq.normalTitle" = "Track Car";
+
+/* Class = "UIButton"; normalTitle = "주차를 종료합니다"; ObjectID = "ck3-xZ-hEc"; */
+"ck3-xZ-hEc.normalTitle" = "주차를 종료합니다";
+
+/* Class = "UILabel"; text = "00:00:01"; ObjectID = "d81-ai-O1I"; */
+"d81-ai-O1I.text" = "00:00:01";
+
+/* Class = "UILabel"; text = "memo"; ObjectID = "yMn-Ig-lcj"; */
+"yMn-Ig-lcj.text" = "memo";

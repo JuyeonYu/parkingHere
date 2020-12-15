@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  parkingHere
+
+  Created by Juyeon on 2020/12/15.
+  
+*/
+
+"memo" = "메모";
+"choose option" = "옵션을 선택해주세요";
+"camera" = "카메라";
+"reset" = "다시 촬영하기";
+"cancel" = "취소";
+"start parking" = "주차를 시작합니다";
+"end parking" = "주차를 종료합니다";
+"track car" = "내 차 찾기";

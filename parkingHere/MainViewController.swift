@@ -20,21 +20,21 @@ class MainViewController: UIViewController {
     var locationManager: CLLocationManager!
     
     @IBAction func didTapResetCarButton(_ sender: Any) {
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("choose option", comment: ""), preferredStyle: .actionSheet)
 
-        let deleteAction = UIAlertAction(title: "camera", style: .default, handler: {
+        let deleteAction = UIAlertAction(title: NSLocalizedString("camera", comment: ""), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.openCamera()
         })
         
-        let resetAction = UIAlertAction(title: "reset", style: .default, handler: {
+        let resetAction = UIAlertAction(title: NSLocalizedString("reset", comment: ""), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.addCarButton.isHidden = false
             self.resetCarButton.isHidden =  true
             self.carImageView.image = UIImage(systemName: "car.fill")
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
       })
         optionMenu.addAction(deleteAction)
@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
         UserDefaults.standard.set(true, forKey: "isParking")
         UserDefaults.standard.set(Date(), forKey: "parkingTime")
         
-        if memoTextField.text != "간단메모" {
+        if memoTextField.text != NSLocalizedString("memo", comment: "") {
             UserDefaults.standard.set(memoTextField.text, forKey: "memo")
         }
         
@@ -94,6 +94,9 @@ class MainViewController: UIViewController {
         
         memoTextField.textColor = .gray
         memoTextField.delegate = self
+        
+        startParkingButton.setTitle(NSLocalizedString("start parking", comment: ""), for: .normal)
+        memoTextField.text = NSLocalizedString("memo", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +131,7 @@ class MainViewController: UIViewController {
                 vc.carImage = UIImage(systemName: "car.fill")
             }
             
-            if memoTextField.text != "간단메모" {
+            if memoTextField.text != NSLocalizedString("memo", comment: "") {
                 vc.memoText = memoTextField.text
             }
             self.present(vc, animated: true)
@@ -173,7 +176,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
 
 extension MainViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "간단메모" {
+        if textView.text == NSLocalizedString("memo", comment: "") {
             textView.text = ""
         }
         textView.textColor = .label
@@ -181,7 +184,7 @@ extension MainViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
-            textView.text = "간단메모"
+            textView.text = NSLocalizedString("memo", comment: "")
         }
         textView.textColor = .gray
     }

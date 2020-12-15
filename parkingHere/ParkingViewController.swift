@@ -55,7 +55,10 @@ class ParkingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        endParkingButton .setTitle(NSLocalizedString("end parking", comment: ""), for: .normal)
         endParkingButton.layer.cornerRadius = endParkingButton.bounds.height / 2
+        
+        trackCarButton.setTitle(NSLocalizedString("track car", comment: ""), for: .normal)
         trackCarButton.layer.cornerRadius = trackCarButton.bounds.height / 2
         
         if let carImage = carImage {

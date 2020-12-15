@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  parkingHere
+
+  Created by Juyeon on 2020/12/15.
+  
+*/
+
+"memo" = "memorándum";
+"choose option" = "elegir opción";
+"camera" = "cámara";
+"reset" = "Reiniciar";
+"cancel" = "cancelar";
+"start parking" = "empezar a aparcar";
+"end parking" = "estacionamiento final";
+"track car" = "coche de pista";
