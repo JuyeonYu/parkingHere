@@ -23,11 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Esta aplicación requiere acceso a la cámara para su estacionamiento</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Esta aplicación requiere acceso a la ubicación de su estacionamiento</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Esta aplicación requiere acceso a la ubicación de su estacionamiento</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
