@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var addCarButton: UIButton!
     @IBOutlet weak var resetCarButton: UIButton!
     
-    var locationManager: CLLocationManager!
+    var locationManager: CLLocationManager?
     
     @IBAction func didTapResetCarButton(_ sender: Any) {
         let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("choose option", comment: ""), preferredStyle: .actionSheet)
@@ -60,13 +60,11 @@ class MainViewController: UIViewController {
             UserDefaults.standard.set(carImageView.image?.pngData(), forKey: "carImage")
         }
         
-        UserDefaults.standard.set(locationManager.location?.coordinate.longitude, forKey: "longitude")
-        UserDefaults.standard.set(locationManager.location?.coordinate.latitude, forKey: "latitude")
+        UserDefaults.standard.set(locationManager?.location?.coordinate.longitude, forKey: "longitude")
+        UserDefaults.standard.set(locationManager?.location?.coordinate.latitude, forKey: "latitude")
     }
     
     @IBAction func didTapStartParkingButton(_ sender: Any) {
-        let coordinate = locationManager.location?.coordinate
-        findAddr(lat: coordinate!.latitude, long: coordinate!.longitude)
         saveParkingInformation()
         goParkingVC()
     }
@@ -74,18 +72,16 @@ class MainViewController: UIViewController {
     func openCamera() {
         let vc = UIImagePickerController()
         vc.sourceType = .camera
-//        vc.allowsEditing = true
         vc.delegate = self
-
         present(vc, animated: true)
     }
     
     fileprivate func initLocationManager() {
         locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
+        locationManager?.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startUpdatingLocation()
     }
     
     override func viewDidLoad() {

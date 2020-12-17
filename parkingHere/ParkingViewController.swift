@@ -20,6 +20,16 @@ class ParkingViewController: UIViewController {
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var trackCarButton: UIButton!
     @IBAction func didTapTrackCarButton(_ sender: Any) {
+        guard UserDefaults.standard.double(forKey: "latitude") != 0 else {
+            let alert = UIAlertController(title: NSLocalizedString("no location info", comment: ""),
+                                          message: NSLocalizedString("allow location", comment: ""),
+                                          preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive) { (action) in }
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as? MapViewController else { return }
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -30,8 +40,8 @@ class ParkingViewController: UIViewController {
         UserDefaults.standard.set(nil, forKey: "parkingTime")
         UserDefaults.standard.set(nil, forKey: "memo")
         UserDefaults.standard.set(nil, forKey: "carImage")
-        UserDefaults.standard.set(nil, forKey: "latitude")
-        UserDefaults.standard.set(nil, forKey: "longitude")
+        UserDefaults.standard.set(0, forKey: "latitude")
+        UserDefaults.standard.set(0, forKey: "longitude")
     }
     
     @IBAction func didTabEndParkingButton(_ sender: Any) {
