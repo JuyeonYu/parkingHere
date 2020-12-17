@@ -14,3 +14,5 @@
 "start parking" = "empezar a aparcar";
 "end parking" = "estacionamiento final";
 "track car" = "coche de pista";
+"no location info" = "sin información de ubicación";
+"allow location" = "por favor permita la ubicación de esta aplicación";

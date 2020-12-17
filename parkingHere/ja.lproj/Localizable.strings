@@ -14,3 +14,5 @@
 "start parking" = "駐車を開始します";
 "end parking" = "駐車終了";
 "track car" = "私の車の位置を追跡する";
+"no location info" = "位置情報なし";
+"allow location" = "このアプリの場所を許可してください";

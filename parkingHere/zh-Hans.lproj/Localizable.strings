@@ -15,3 +15,5 @@
 "start parking" = "开始停车";
 "end parking" = "末端停车";
 "track car" = "追踪我的车位置";
+"no location info" = "位置情報なし";
+"allow location" = "请允许该应用定位";

@@ -40,8 +40,13 @@
 		CE69A8F025860BEA00C3B1E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE69A8F225860BEB00C3B1E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE69A8F525860BEB00C3B1E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CE69A8F725860BEB00C3B1E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
+		CEBD4F00258B6E56000379A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
+		CEBD4F02258B6E5A000379A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
+		CEBD4F03258B6E5E000379A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Info.plist"; sourceTree = "<group>"; };
+		CEBD4F04258B6E5F000379A7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ja; path = ja.lproj/Info.plist; sourceTree = "<group>"; };
+		CEBD4F05258B6E60000379A7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ko; path = ko.lproj/Info.plist; sourceTree = "<group>"; };
+		CEBD4F06258B6E61000379A7 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "es-419"; path = "es-419.lproj/Info.plist"; sourceTree = "<group>"; };
 		CEDEB0232587C9A0000EBF1B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CEDEB0352587DCA1000EBF1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CEDEB0382587DCC3000EBF1B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -108,7 +113,7 @@
 				CE69A8EF25860BEA00C3B1E1 /* Main.storyboard */,
 				CE69A8F225860BEB00C3B1E1 /* Assets.xcassets */,
 				CE69A8F425860BEB00C3B1E1 /* LaunchScreen.storyboard */,
-				CE69A8F725860BEB00C3B1E1 /* Info.plist */,
+				CEBD4F01258B6E56000379A7 /* Info.plist */,
 			);
 			path = parkingHere;
 			sourceTree = "<group>";
@@ -290,6 +295,19 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		CEBD4F01258B6E56000379A7 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEBD4F00258B6E56000379A7 /* Base */,
+				CEBD4F02258B6E5A000379A7 /* en */,
+				CEBD4F03258B6E5E000379A7 /* zh-Hans */,
+				CEBD4F04258B6E5F000379A7 /* ja */,
+				CEBD4F05258B6E60000379A7 /* ko */,
+				CEBD4F06258B6E61000379A7 /* es-419 */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
 		CEDEB0362587DCA1000EBF1B /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -429,15 +447,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
 				INFOPLIST_FILE = parkingHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.johnny.-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.findMyCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,15 +469,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
 				INFOPLIST_FILE = parkingHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.johnny.-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.findMyCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

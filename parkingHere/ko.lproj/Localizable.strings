@@ -14,3 +14,5 @@
 "start parking" = "주차를 시작합니다";
 "end parking" = "주차를 종료합니다";
 "track car" = "내 차 찾기";
+"no location info" = "위치 정보 없음";
+"allow location" = "앱의 위치 권한을 허용해주세요";
