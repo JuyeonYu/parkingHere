@@ -49,7 +49,8 @@ class ParkingViewController: UIViewController {
         guard let vc = preVC as? MainViewController else {
             return
         }
-        
+        vc.alarmSwitch.isOn = false
+        vc.datePicker.isHidden = true
         vc.carImageView.image = UIImage(systemName: "car.fill")
         vc.hasImage = false
         self.dismiss(animated: true, completion: {

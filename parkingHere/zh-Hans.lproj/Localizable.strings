@@ -17,3 +17,8 @@
 "track car" = "追踪我的车位置";
 "no location info" = "位置情報なし";
 "allow location" = "请允许该应用定位";
+"hour" = "小时";
+"minute" = "分钟";
+"alert at me after %@" = "%@后提醒我";
+"alert" = "警报";
+"remind the parking time" = "请提醒停车时间";

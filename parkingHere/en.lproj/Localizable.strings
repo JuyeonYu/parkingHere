@@ -16,3 +16,8 @@
 "track car" = "Track Car";
 "no location info" = "No location information";
 "allow location" = "Please allow to get your location for this app";
+"hour" = "hour";
+"minute" = "minute";
+"alert at me after %@" = "alert at me after %@";
+"alert" = "alarm";
+"remind the parking time" = "Please remind the parking time";

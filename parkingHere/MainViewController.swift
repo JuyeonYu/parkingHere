@@ -11,11 +11,40 @@ import CoreLocation
 class MainViewController: UIViewController {
     var hasImage: Bool = false
     
+    @IBOutlet weak var alarmLabel: UILabel!
+    @IBOutlet weak var alarmSwitch: UISwitch!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var memoTextField: UITextView!
     @IBOutlet weak var startParkingButton: UIButton!
     @IBOutlet weak var addCarButton: UIButton!
     @IBOutlet weak var resetCarButton: UIButton!
+    @IBAction func didTapAlarmSwitch(_ sender: Any) {
+        if alarmSwitch.isOn {
+            datePicker.isHidden = false
+            alarmLabel.text = String(format: NSLocalizedString("alert at me after %@", comment: ""), getTime(sender: datePicker))
+        } else {
+            datePicker.isHidden = true
+            alarmLabel.text = NSLocalizedString("alert", comment: "")
+        }
+    }
+    
+    @IBAction func didChangeDatePicker(_ sender: Any) {
+        alarmLabel.text = String(format: NSLocalizedString("alert at me after %@", comment: ""), getTime(sender: sender as! UIDatePicker))
+    }
+    
+    func getTime(sender:UIDatePicker) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH \(NSLocalizedString("hour", comment: "")) mm \(NSLocalizedString("minute", comment: ""))"
+        return dateFormatter.string(from: sender.date)
+    }
+    
+    func getSecondFrom(date: Date) -> Int {
+        let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+        let hour = components.hour!
+        let minute = components.minute!
+        return (hour * 60 * 60) + (minute * 60)
+    }
     
     var locationManager: CLLocationManager?
     
@@ -64,9 +93,22 @@ class MainViewController: UIViewController {
         UserDefaults.standard.set(locationManager?.location?.coordinate.latitude, forKey: "latitude")
     }
     
+    func setAlert(after seconds: Int) {
+        guard alarmSwitch.isOn else { return }
+        let content = UNMutableNotificationContent()
+        
+        content.title = NSLocalizedString("remind the parking time", comment: "")
+        content.badge = 1
+        content.sound = .default
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(seconds), repeats:false)
+        let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
     @IBAction func didTapStartParkingButton(_ sender: Any) {
         saveParkingInformation()
-        goParkingVC()
+        goParkingVC(hasAnimation: true)
+        setAlert(after: getSecondFrom(date: datePicker.date))
     }
     
     func openCamera() {
@@ -94,9 +136,12 @@ class MainViewController: UIViewController {
         
         startParkingButton.setTitle(NSLocalizedString("start parking", comment: ""), for: .normal)
         memoTextField.text = NSLocalizedString("memo", comment: "")
+        alarmLabel.text = NSLocalizedString("alert", comment: "")
         
         carImageView.isUserInteractionEnabled = true
         carImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCarImageView)))
+        
+        datePicker.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,11 +155,13 @@ class MainViewController: UIViewController {
             resetCarButton.isHidden = true
         }
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(goParkingVC),
+                                               selector: #selector(self.goParkingVC(hasAnimation:)),
                                                name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
         
         initLocationManager()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in })
+        
     }
     
     @objc func didTapCarImageView() {
@@ -128,7 +175,7 @@ class MainViewController: UIViewController {
         self.present(vc, animated: true)
     }
     
-    @objc func goParkingVC() {
+    @objc func goParkingVC(hasAnimation: Bool) {
         if UserDefaults.standard.bool(forKey: "isParking") {
             NotificationCenter.default.removeObserver(self)
             
@@ -145,7 +192,7 @@ class MainViewController: UIViewController {
             if memoTextField.text != NSLocalizedString("memo", comment: "") {
                 vc.memoText = memoTextField.text
             }
-            self.present(vc, animated: true)
+            self.present(vc, animated: hasAnimation)
         }
     }
     

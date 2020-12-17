@@ -16,3 +16,8 @@
 "track car" = "私の車の位置を追跡する";
 "no location info" = "位置情報なし";
 "allow location" = "このアプリの場所を許可してください";
+"hour" = "時間";
+"minute" = "分";
+"alert at me after %@" = "%@後に私に警告";
+"alert" = "アラート";
+"remind the parking time" = "駐車時間をお知らせください";

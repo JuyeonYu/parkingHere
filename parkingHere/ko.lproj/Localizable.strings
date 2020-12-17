@@ -16,3 +16,8 @@
 "track car" = "내 차 찾기";
 "no location info" = "위치 정보 없음";
 "allow location" = "앱의 위치 권한을 허용해주세요";
+"hour" = "시간";
+"minute" = "분";
+"alert at me after %@" = "%@ 후에 알림";
+"alert" = "알림";
+"remind the parking time" = "주차시간을 확인해주세요";

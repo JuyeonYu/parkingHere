@@ -16,3 +16,8 @@
 "track car" = "coche de pista";
 "no location info" = "sin información de ubicación";
 "allow location" = "por favor permita la ubicación de esta aplicación";
+"hour" = "hora";
+"minute" = "minuto";
+"alert at me after %@" = "alerta a mí después de %@";
+"alert" = "alerta";
+"remind the parking time" = "Recuerde el tiempo de estacionamiento";
