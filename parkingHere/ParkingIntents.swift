@@ -28,6 +28,7 @@ struct StartParkingIntent: LiveActivityIntent {
                                      coordinate: location?.location?.coordinate)
         // 이미 주차 중이어도 가장 최근 하차가 현재 주차이므로 새 세션으로 바꾼다.
         ParkingSessionStore.start(session, photo: nil)
+        await ParkingReminder.scheduleAddPhoto()
         return .result(dialog: IntentDialog(session.coordinate == nil ? "intent.start.done.noLocation" : "intent.start.done"))
     }
 }

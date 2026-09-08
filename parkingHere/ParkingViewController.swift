@@ -7,13 +7,17 @@
 
 import UIKit
 
-/// 주차 중 화면. 경과 시간을 보여주고 차를 찾거나 주차를 끝낸다.
+/// 주차 중 화면. 경과 시간을 보여주고 차를 찾거나 주차를 끝낸다. 사진과 메모는 여기서 나중에 추가할 수 있다.
 final class ParkingViewController: UIViewController {
-    private let session: ParkingSession
-    private let photo: UIImage?
+    private var session: ParkingSession
+    private var photo: UIImage?
 
-    private let photoCard = CarPhotoCard(placeholderSymbol: "car.fill", placeholderTitle: L("photo.none"))
+    private let photoCard = CarPhotoCard(placeholderSymbol: "camera.fill",
+                                         placeholderTitle: L("photo.add"),
+                                         placeholderSubtitle: L("photo.hint"))
     private let timerLabel = UILabel.make("00:00:00", font: DS.Font.timer(size: 44))
+    private let memoLabel = UILabel.make(font: DS.Font.rounded(.body), lines: 3)
+    private let photoPicker = PhotoPicker()
     private var timer: Timer?
 
     init(session: ParkingSession, photo: UIImage?) {
@@ -33,7 +37,11 @@ final class ParkingViewController: UIViewController {
         buildLayout()
 
         photoCard.image = photo
+        photoCard.showsAccessoryWhenPhoto = true
+        photoCard.accessoryButton.menu = photoMenu()
+        photoCard.accessoryButton.showsMenuAsPrimaryAction = true
         photoCard.addTarget(self, action: #selector(didTapPhotoCard), for: .touchUpInside)
+        updateMemoLabel()
         updateTimer()
     }
 
@@ -88,18 +96,14 @@ final class ParkingViewController: UIViewController {
         timerStack.pinEdges(to: timerCard, insets: NSDirectionalEdgeInsets(top: 16, leading: DS.cardPadding,
                                                                           bottom: 16, trailing: DS.cardPadding))
 
+        let memoCard = makeMemoCard()
+
         let findButton = UIButton.make(title: L("parking.findCar"), systemImage: "location.fill", style: .primary)
         findButton.addTarget(self, action: #selector(didTapFindCar), for: .touchUpInside)
         let endButton = UIButton.make(title: L("parking.end"), systemImage: "flag.checkered", style: .destructive)
         endButton.addTarget(self, action: #selector(didTapEnd), for: .touchUpInside)
 
-        var arranged: [UIView] = [header, photoCard, timerCard]
-        if let memo = session.memo {
-            arranged.append(makeMemoCard(memo))
-        }
-        arranged += [findButton, endButton]
-
-        let stack = UIStackView(arrangedSubviews: arranged)
+        let stack = UIStackView(arrangedSubviews: [header, photoCard, timerCard, memoCard, findButton, endButton])
         stack.axis = .vertical
         stack.spacing = DS.spacing
         stack.setCustomSpacing(24, after: header)
@@ -114,28 +118,90 @@ final class ParkingViewController: UIViewController {
         photoCard.heightAnchor.constraint(greaterThanOrEqualToConstant: 140).isActive = true
     }
 
-    private func makeMemoCard(_ memo: String) -> UIView {
+    private func makeMemoCard() -> UIView {
         let card = CardView()
         let icon = IconBadgeView(systemName: "note.text", size: 36, pointSize: 15)
-        let label = UILabel.make(memo, font: DS.Font.rounded(.body), lines: 3)
-        let row = UIStackView(arrangedSubviews: [icon, label])
+        let chevron = UIImageView(image: UIImage(systemName: "chevron.right"))
+        chevron.tintColor = .tertiaryLabel
+        chevron.setContentHuggingPriority(.required, for: .horizontal)
+        let row = UIStackView(arrangedSubviews: [icon, memoLabel, chevron])
         row.spacing = 12
         row.alignment = .center
         card.addSubview(row)
         row.pinEdges(to: card, insets: NSDirectionalEdgeInsets(top: 14, leading: DS.cardPadding,
                                                               bottom: 14, trailing: DS.cardPadding))
+        card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMemoCard)))
+        card.isAccessibilityElement = true
+        card.accessibilityTraits = .button
         return card
     }
 
-    // MARK: - Actions
+    private func photoMenu() -> UIMenu {
+        UIMenu(children: [
+            UIAction(title: L("photo.retake"), image: UIImage(systemName: "camera")) { [weak self] _ in
+                self?.presentPhotoPicker()
+            },
+            UIAction(title: L("photo.remove"), image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+                ParkingSessionStore.removePhoto()
+                self?.photo = nil
+                self?.photoCard.image = nil
+            },
+        ])
+    }
+
+    // MARK: - Updates
 
     private func updateTimer() {
         timerLabel.text = session.elapsedText()
     }
 
+    private func updateMemoLabel() {
+        if let memo = session.memo {
+            memoLabel.text = memo
+            memoLabel.textColor = .label
+        } else {
+            memoLabel.text = L("parking.addMemo")
+            memoLabel.textColor = .secondaryLabel
+        }
+    }
+
+    // MARK: - Actions
+
     @objc private func didTapPhotoCard() {
-        guard let photo = photo else { return }
-        present(ImageDetailViewController(image: photo), animated: true)
+        if let photo = photo {
+            present(ImageDetailViewController(image: photo), animated: true)
+        } else {
+            presentPhotoPicker()
+        }
+    }
+
+    /// 딥링크(알림, 라이브 액티비티)로도 호출된다.
+    func presentPhotoPicker() {
+        guard presentedViewController == nil else { return }
+        photoPicker.present(from: self) { [weak self] image in
+            guard let self = self, let image = image else { return }
+            ParkingSessionStore.savePhoto(image)
+            self.photo = image
+            self.photoCard.image = image
+        }
+    }
+
+    @objc private func didTapMemoCard() {
+        let alert = UIAlertController(title: L("parking.editMemo.title"), message: nil, preferredStyle: .alert)
+        alert.addTextField { [session] field in
+            field.text = session.memo
+            field.placeholder = L("memo.placeholder")
+            field.clearButtonMode = .whileEditing
+        }
+        alert.addAction(UIAlertAction(title: L("common.cancel"), style: .cancel))
+        alert.addAction(UIAlertAction(title: L("common.save"), style: .default) { [weak self, weak alert] _ in
+            guard let self = self else { return }
+            let text = alert?.textFields?.first?.text
+            ParkingSessionStore.updateMemo(text)
+            self.session = ParkingSessionStore.current ?? self.session
+            self.updateMemoLabel()
+        })
+        present(alert, animated: true)
     }
 
     @objc private func didTapFindCar() {

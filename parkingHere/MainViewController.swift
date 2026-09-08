@@ -19,6 +19,7 @@ final class MainViewController: UIViewController {
                                                     color: .placeholderText)
     private let startButton = UIButton.make(title: L("parking.start"), systemImage: "car.fill", style: .primary)
     private let locationManager = CLLocationManager()
+    private let photoPicker = PhotoPicker()
     /// 첫 viewDidAppear 전에 들어온 딥링크. 화면이 뜬 뒤 처리한다.
     private var pendingDeepLink: DeepLink?
     private var hasAppeared = false
@@ -71,8 +72,12 @@ final class MainViewController: UIViewController {
             return
         }
         restoreSessionIfNeeded()
-        guard link == .map, let parkingVC = presentedViewController as? ParkingViewController else { return }
-        parkingVC.showMap()
+        guard let parkingVC = presentedViewController as? ParkingViewController else { return }
+        switch link {
+        case .parking: break
+        case .map: parkingVC.showMap()
+        case .photo: parkingVC.presentPhotoPicker()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -190,29 +195,16 @@ final class MainViewController: UIViewController {
     }
 
     private func openCamera() {
-        let picker = UIImagePickerController()
-        // 카메라가 없는 기기(시뮬레이터 등)에서는 사진 앨범으로 대체한다.
-        picker.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
-        picker.delegate = self
-        present(picker, animated: true)
+        photoPicker.present(from: self) { [weak self] image in
+            guard let image = image else { return }
+            self?.photoCard.image = image
+        }
     }
 
     private func resetForm() {
         photoCard.image = nil
         memoTextView.text = ""
         memoPlaceholderLabel.isHidden = false
-    }
-}
-
-// MARK: - UIImagePickerControllerDelegate
-
-extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            photoCard.image = image
-        }
-        picker.dismiss(animated: true)
     }
 }
 

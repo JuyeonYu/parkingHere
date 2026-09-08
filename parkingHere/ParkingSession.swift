@@ -73,11 +73,31 @@ enum ParkingSessionStore {
         notifyChange()
     }
 
+    /// 주차 중에 사진을 추가하거나 바꾼다.
+    static func savePhoto(_ image: UIImage) {
+        CarImageStore.save(image)
+        ParkingReminder.cancelAddPhoto()
+        if let session = current { ParkingActivityController.update(for: session) }
+    }
+
+    static func removePhoto() {
+        CarImageStore.delete()
+        if let session = current { ParkingActivityController.update(for: session) }
+    }
+
+    /// 주차 중에 메모를 바꾼다. 빈 문자열은 메모 삭제로 본다.
+    static func updateMemo(_ memo: String?) {
+        let trimmed = memo?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        defaults.set(trimmed.isEmpty ? nil : trimmed, forKey: Key.memo)
+        if let session = current { ParkingActivityController.update(for: session) }
+    }
+
     static func end() {
         [Key.isParking, Key.startedAt, Key.memo, Key.latitude, Key.longitude]
             .forEach { defaults.removeObject(forKey: $0) }
         CarImageStore.delete()
         ParkingActivityController.endAll()
+        ParkingReminder.cancelAddPhoto()
         notifyChange()
     }
 

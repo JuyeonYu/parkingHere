@@ -10,7 +10,6 @@
 "photo.hint" = "주차한 자리를 찍어 두세요";
 "photo.retake" = "다시 찍기";
 "photo.remove" = "사진 삭제";
-"photo.none" = "등록된 사진이 없어요";
 
 "memo.placeholder" = "메모 (예: B2 47번 기둥 옆)";
 
@@ -61,3 +60,10 @@
 "guide.openShortcuts" = "단축어 앱 열기";
 "guide.siriTip" = "Siri에게 “내 차를 찾아줘 내 차 어디야”라고 말하면 위치와 경과 시간을 알려주고 지도를 엽니다.";
 "guide.requiresIOS17" = "자동화와 Siri 기능은 iOS 17.2 이상에서 사용할 수 있습니다.";
+
+"parking.addMemo" = "메모 추가";
+"parking.editMemo.title" = "메모";
+"common.save" = "저장";
+"notification.addPhoto.title" = "주차 위치 사진을 남길까요?";
+"notification.addPhoto.body" = "지금 찍어 두면 나중에 차를 찾기 훨씬 쉬워요.";
+"notification.addPhoto.action" = "사진 추가";

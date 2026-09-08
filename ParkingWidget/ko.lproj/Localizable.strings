@@ -2,3 +2,5 @@
 "activity.elapsed" = "경과";
 "activity.findCar" = "내 차 찾기";
 "activity.startedAt %@" = "%@에 시작";
+
+"activity.addPhoto" = "사진 추가";

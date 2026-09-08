@@ -2,3 +2,5 @@
 "activity.elapsed" = "已停";
 "activity.findCar" = "找到我的车";
 "activity.startedAt %@" = "%@ 开始";
+
+"activity.addPhoto" = "添加照片";

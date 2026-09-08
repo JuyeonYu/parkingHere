@@ -10,7 +10,6 @@
 "photo.hint" = "拍下您的停车位置";
 "photo.retake" = "重拍";
 "photo.remove" = "删除照片";
-"photo.none" = "还没有照片";
 
 "memo.placeholder" = "备注（例如：B2层 47号柱旁）";
 
@@ -61,3 +60,10 @@
 "guide.openShortcuts" = "打开快捷指令";
 "guide.siriTip" = "对Siri说“找到我的车 我的车在哪”，即可听到停车位置和已停时间并打开地图。";
 "guide.requiresIOS17" = "自动化和Siri功能需要iOS 17.2或更高版本。";
+
+"parking.addMemo" = "添加备注";
+"parking.editMemo.title" = "备注";
+"common.save" = "保存";
+"notification.addPhoto.title" = "要拍一张停车位置的照片吗？";
+"notification.addPhoto.body" = "现在拍一张，之后找车会容易得多。";
+"notification.addPhoto.action" = "添加照片";

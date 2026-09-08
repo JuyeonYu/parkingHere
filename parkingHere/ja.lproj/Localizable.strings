@@ -10,7 +10,6 @@
 "photo.hint" = "駐車した場所を撮影しておきましょう";
 "photo.retake" = "撮り直す";
 "photo.remove" = "写真を削除";
-"photo.none" = "写真がありません";
 
 "memo.placeholder" = "メモ（例：B2 47番柱の横）";
 
@@ -61,3 +60,10 @@
 "guide.openShortcuts" = "ショートカットを開く";
 "guide.siriTip" = "Siriに「私の車を見つけるで車はどこ」と話しかけると、駐車位置と経過時間を教えて地図を開きます。";
 "guide.requiresIOS17" = "オートメーションとSiriはiOS 17.2以降で利用できます。";
+
+"parking.addMemo" = "メモを追加";
+"parking.editMemo.title" = "メモ";
+"common.save" = "保存";
+"notification.addPhoto.title" = "駐車位置の写真を残しますか？";
+"notification.addPhoto.body" = "今撮っておくと、あとで車を見つけやすくなります。";
+"notification.addPhoto.action" = "写真を追加";

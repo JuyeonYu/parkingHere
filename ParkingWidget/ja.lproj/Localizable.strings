@@ -2,3 +2,5 @@
 "activity.elapsed" = "経過";
 "activity.findCar" = "車を探す";
 "activity.startedAt %@" = "%@に開始";
+
+"activity.addPhoto" = "写真を追加";

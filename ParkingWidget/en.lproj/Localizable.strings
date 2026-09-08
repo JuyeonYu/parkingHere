@@ -2,3 +2,5 @@
 "activity.elapsed" = "elapsed";
 "activity.findCar" = "Find My Car";
 "activity.startedAt %@" = "Started at %@";
+
+"activity.addPhoto" = "Add Photo";

@@ -73,6 +73,12 @@ final class AutomationGuideViewController: UIViewController {
         titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: closeButton.leadingAnchor, constant: -8).isActive = true
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 자동 시작 뒤 사진 알림을 보내려면 알림 권한이 필요하다.
+        ParkingReminder.requestAuthorizationIfNeeded()
+    }
+
     private func makeStepCard(number: Int, text: String) -> UIView {
         let card = CardView()
         let badge = UILabel.make("\(number)", font: DS.Font.rounded(size: 15, weight: .bold), color: DS.Color.onBrand)

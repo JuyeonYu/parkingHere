@@ -14,12 +14,13 @@ private enum Brand {
     static let onYellow = Color("OnBrand")
     static let parkingURL = URL(string: "parkinghere://parking")!
     static let mapURL = URL(string: "parkinghere://map")!
+    static let photoURL = URL(string: "parkinghere://photo")!
 }
 
 struct ParkingLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: ParkingActivityAttributes.self) { context in
-            LockScreenView(attributes: context.attributes)
+            LockScreenView(attributes: context.attributes, state: context.state)
                 .widgetURL(Brand.parkingURL)
         } dynamicIsland: { context in
             DynamicIsland {
@@ -37,13 +38,15 @@ struct ParkingLiveActivity: Widget {
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     HStack(spacing: 12) {
-                        Subtitle(attributes: context.attributes)
+                        Subtitle(attributes: context.attributes, state: context.state)
                             .font(.system(.subheadline, design: .rounded))
                             .foregroundStyle(.secondary)
                             .lineLimit(1)
                         Spacer(minLength: 0)
                         if context.attributes.hasLocation {
-                            FindCarLink(compact: true)
+                            ActionLink(kind: .findCar, compact: true)
+                        } else if !context.state.hasPhoto {
+                            ActionLink(kind: .addPhoto, compact: true)
                         }
                     }
                     .padding(.horizontal, 4)
@@ -73,6 +76,7 @@ struct ParkingLiveActivity: Widget {
 
 private struct LockScreenView: View {
     let attributes: ParkingActivityAttributes
+    let state: ParkingActivityAttributes.ContentState
 
     var body: some View {
         VStack(spacing: 14) {
@@ -81,7 +85,7 @@ private struct LockScreenView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("activity.title")
                         .font(.system(.headline, design: .rounded).weight(.semibold))
-                    Subtitle(attributes: attributes)
+                    Subtitle(attributes: attributes, state: state)
                         .font(.system(.subheadline, design: .rounded))
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
@@ -94,8 +98,15 @@ private struct LockScreenView: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            if attributes.hasLocation {
-                FindCarLink(compact: false)
+            if attributes.hasLocation || !state.hasPhoto {
+                HStack(spacing: 10) {
+                    if attributes.hasLocation {
+                        ActionLink(kind: .findCar, compact: false)
+                    }
+                    if !state.hasPhoto {
+                        ActionLink(kind: .addPhoto, compact: false, secondary: attributes.hasLocation)
+                    }
+                }
             }
         }
         .padding(16)
@@ -135,9 +146,10 @@ private struct ElapsedTimer: View {
 
 private struct Subtitle: View {
     let attributes: ParkingActivityAttributes
+    let state: ParkingActivityAttributes.ContentState
 
     var body: some View {
-        if let memo = attributes.memo {
+        if let memo = state.memo {
             Text(memo)
         } else {
             Text("activity.startedAt \(Text(attributes.startedAt, style: .time))")
@@ -145,18 +157,29 @@ private struct Subtitle: View {
     }
 }
 
-private struct FindCarLink: View {
+private struct ActionLink: View {
+    enum Kind {
+        case findCar, addPhoto
+
+        var url: URL { self == .findCar ? Brand.mapURL : Brand.photoURL }
+        var titleKey: LocalizedStringKey { self == .findCar ? "activity.findCar" : "activity.addPhoto" }
+        var symbol: String { self == .findCar ? "location.fill" : "camera.fill" }
+    }
+
+    let kind: Kind
     let compact: Bool
+    /// 주 버튼 옆에 놓일 때는 채우지 않은 스타일로 보여준다.
+    var secondary: Bool = false
 
     var body: some View {
-        Link(destination: Brand.mapURL) {
-            Label("activity.findCar", systemImage: "location.fill")
+        Link(destination: kind.url) {
+            Label(kind.titleKey, systemImage: kind.symbol)
                 .font(.system(compact ? .subheadline : .headline, design: .rounded).weight(.semibold))
-                .foregroundStyle(Brand.onYellow)
+                .foregroundStyle(secondary ? .primary : Brand.onYellow)
                 .padding(.vertical, compact ? 8 : 12)
                 .padding(.horizontal, compact ? 14 : 16)
                 .frame(maxWidth: compact ? nil : .infinity)
-                .background(Brand.yellow, in: Capsule())
+                .background(secondary ? AnyShapeStyle(.quaternary) : AnyShapeStyle(Brand.yellow), in: Capsule())
         }
     }
 }

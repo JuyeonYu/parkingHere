@@ -10,10 +10,12 @@ import Foundation
 
 @available(iOS 16.1, *)
 struct ParkingActivityAttributes: ActivityAttributes {
-    /// 시작 시각 기준으로 시스템이 타이머를 그리므로 갱신할 동적 상태는 없다.
-    struct ContentState: Codable, Hashable {}
+    /// 주차 중에 바뀔 수 있는 값. 타이머는 시작 시각 기준으로 시스템이 그린다.
+    struct ContentState: Codable, Hashable {
+        var memo: String?
+        var hasPhoto: Bool
+    }
 
     var startedAt: Date
-    var memo: String?
     var hasLocation: Bool
 }

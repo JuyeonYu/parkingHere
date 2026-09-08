@@ -45,6 +45,10 @@ enum CarImageStore {
         return nil
     }
 
+    static var exists: Bool {
+        FileManager.default.fileExists(atPath: fileURL.path)
+    }
+
     static func delete() {
         try? FileManager.default.removeItem(at: fileURL)
         UserDefaults.standard.removeObject(forKey: legacyDefaultsKey)

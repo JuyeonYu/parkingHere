@@ -10,7 +10,6 @@
 "photo.hint" = "Take a photo of your parking spot";
 "photo.retake" = "Retake";
 "photo.remove" = "Remove Photo";
-"photo.none" = "No photo added";
 
 "memo.placeholder" = "Note (e.g. Level B2, next to pillar 47)";
 
@@ -61,3 +60,10 @@
 "guide.openShortcuts" = "Open Shortcuts";
 "guide.siriTip" = "Ask Siri \"Where is my car in Find My Car\" to hear where you parked and open the map.";
 "guide.requiresIOS17" = "Automations and Siri require iOS 17.2 or later.";
+
+"parking.addMemo" = "Add a note";
+"parking.editMemo.title" = "Note";
+"common.save" = "Save";
+"notification.addPhoto.title" = "Add a photo of your parking spot?";
+"notification.addPhoto.body" = "A quick photo now makes finding your car much easier later.";
+"notification.addPhoto.action" = "Add Photo";

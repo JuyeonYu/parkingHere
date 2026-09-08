@@ -13,12 +13,15 @@ enum DeepLink: Equatable {
     case parking
     /// 주차 중 화면 위에 지도까지 연다
     case map
+    /// 주차 중 화면에서 사진 추가(카메라)를 연다
+    case photo
 
     init?(url: URL) {
         guard url.scheme == Self.scheme else { return nil }
         switch url.host {
         case "parking": self = .parking
         case "map": self = .map
+        case "photo": self = .photo
         default: return nil
         }
     }
@@ -27,6 +30,7 @@ enum DeepLink: Equatable {
         switch self {
         case .parking: return URL(string: "\(Self.scheme)://parking")!
         case .map: return URL(string: "\(Self.scheme)://map")!
+        case .photo: return URL(string: "\(Self.scheme)://photo")!
         }
     }
 }

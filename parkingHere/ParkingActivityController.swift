@@ -17,19 +17,37 @@ enum ParkingActivityController {
         endAll()
 
         let attributes = ParkingActivityAttributes(startedAt: session.startedAt,
-                                                   memo: session.memo,
                                                    hasLocation: session.coordinate != nil)
+        let state = contentState(for: session)
         do {
             if #available(iOS 16.2, *) {
-                let content = ActivityContent(state: ParkingActivityAttributes.ContentState(), staleDate: nil)
-                _ = try Activity.request(attributes: attributes, content: content)
+                _ = try Activity.request(attributes: attributes, content: ActivityContent(state: state, staleDate: nil))
             } else {
-                _ = try Activity.request(attributes: attributes,
-                                         contentState: ParkingActivityAttributes.ContentState())
+                _ = try Activity.request(attributes: attributes, contentState: state)
             }
         } catch {
             NSLog("ParkingActivityController: failed to start activity - %@", String(describing: error))
         }
+    }
+
+    /// 메모나 사진이 바뀌었을 때 표시 중인 액티비티를 갱신한다.
+    static func update(for session: ParkingSession) {
+        guard #available(iOS 16.1, *) else { return }
+        let state = contentState(for: session)
+        for activity in Activity<ParkingActivityAttributes>.activities {
+            Task {
+                if #available(iOS 16.2, *) {
+                    await activity.update(ActivityContent(state: state, staleDate: nil))
+                } else {
+                    await activity.update(using: state)
+                }
+            }
+        }
+    }
+
+    @available(iOS 16.1, *)
+    private static func contentState(for session: ParkingSession) -> ParkingActivityAttributes.ContentState {
+        ParkingActivityAttributes.ContentState(memo: session.memo, hasPhoto: CarImageStore.exists)
     }
 
     static func endAll() {

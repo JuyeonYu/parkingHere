@@ -10,7 +10,6 @@
 "photo.hint" = "Toma una foto de tu lugar de estacionamiento";
 "photo.retake" = "Volver a tomar";
 "photo.remove" = "Eliminar foto";
-"photo.none" = "Sin foto";
 
 "memo.placeholder" = "Nota (p. ej., nivel B2, junto al pilar 47)";
 
@@ -61,3 +60,10 @@
 "guide.openShortcuts" = "Abrir Atajos";
 "guide.siriTip" = "Pídele a Siri \"Dónde está mi coche en Encontrar mi coche\" para escuchar dónde estacionaste y abrir el mapa.";
 "guide.requiresIOS17" = "Las automatizaciones y Siri requieren iOS 17.2 o posterior.";
+
+"parking.addMemo" = "Agregar nota";
+"parking.editMemo.title" = "Nota";
+"common.save" = "Guardar";
+"notification.addPhoto.title" = "¿Agregar una foto de tu lugar de estacionamiento?";
+"notification.addPhoto.body" = "Una foto ahora hace mucho más fácil encontrar tu coche después.";
+"notification.addPhoto.action" = "Agregar foto";
