@@ -4,3 +4,13 @@
 "activity.startedAt %@" = "Inició a las %@";
 
 "activity.addPhoto" = "Agregar foto";
+
+"intent.start.title" = "Iniciar estacionamiento";
+"intent.end.title" = "Finalizar estacionamiento";
+"intent.find.title" = "Dónde está mi coche";
+"control.start" = "Iniciar";
+"control.start.description" = "Inicia el estacionamiento en tu ubicación actual.";
+"control.end" = "Finalizar";
+"control.end.description" = "Finaliza el estacionamiento actual.";
+"control.find" = "Encontrar mi coche";
+"control.find.description" = "Abre el mapa hacia tu coche.";

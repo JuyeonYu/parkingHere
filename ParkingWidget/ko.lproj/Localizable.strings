@@ -4,3 +4,13 @@
 "activity.startedAt %@" = "%@에 시작";
 
 "activity.addPhoto" = "사진 추가";
+
+"intent.start.title" = "주차 시작";
+"intent.end.title" = "주차 종료";
+"intent.find.title" = "내 차 어디야";
+"control.start" = "주차 시작";
+"control.start.description" = "지금 위치에서 주차를 시작합니다.";
+"control.end" = "주차 종료";
+"control.end.description" = "진행 중인 주차를 끝냅니다.";
+"control.find" = "내 차 찾기";
+"control.find.description" = "주차 위치를 지도로 엽니다.";

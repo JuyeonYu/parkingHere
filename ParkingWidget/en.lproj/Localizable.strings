@@ -4,3 +4,13 @@
 "activity.startedAt %@" = "Started at %@";
 
 "activity.addPhoto" = "Add Photo";
+
+"intent.start.title" = "Start Parking";
+"intent.end.title" = "End Parking";
+"intent.find.title" = "Where Is My Car";
+"control.start" = "Start Parking";
+"control.start.description" = "Starts parking at your current location.";
+"control.end" = "End Parking";
+"control.end.description" = "Ends the current parking session.";
+"control.find" = "Find My Car";
+"control.find.description" = "Opens the map to your car.";

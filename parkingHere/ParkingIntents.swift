@@ -90,20 +90,6 @@ struct FindMyCarIntent: AppIntent {
     }
 }
 
-/// 앱을 열어 주차 화면(위치가 있으면 지도까지)으로 이동한다. `FindMyCarIntent` 가 이어서 실행한다.
-@available(iOS 17.0, *)
-struct OpenParkingScreenIntent: AppIntent {
-    static var title: LocalizedStringResource = "intent.find.title"
-    static var openAppWhenRun = true
-    static var isDiscoverable = false
-
-    func perform() async throws -> some IntentResult {
-        let hasLocation = ParkingSessionStore.current?.coordinate != nil
-        DeepLinkRouter.open(hasLocation ? .map : .parking)
-        return .result()
-    }
-}
-
 @available(iOS 17.0, *)
 struct ParkingShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {

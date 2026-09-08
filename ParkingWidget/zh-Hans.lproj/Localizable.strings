@@ -4,3 +4,13 @@
 "activity.startedAt %@" = "%@ 开始";
 
 "activity.addPhoto" = "添加照片";
+
+"intent.start.title" = "开始停车";
+"intent.end.title" = "结束停车";
+"intent.find.title" = "我的车在哪";
+"control.start" = "开始停车";
+"control.start.description" = "在当前位置开始停车。";
+"control.end" = "结束停车";
+"control.end.description" = "结束当前停车。";
+"control.find" = "找到我的车";
+"control.find.description" = "在地图上打开停车位置。";

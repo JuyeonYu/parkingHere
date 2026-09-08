@@ -10,5 +10,10 @@ import SwiftUI
 struct ParkingWidgetBundle: WidgetBundle {
     var body: some Widget {
         ParkingLiveActivity()
+        if #available(iOS 18.0, *) {
+            StartParkingControl()
+            EndParkingControl()
+            FindMyCarControl()
+        }
     }
 }

@@ -4,3 +4,13 @@
 "activity.startedAt %@" = "%@に開始";
 
 "activity.addPhoto" = "写真を追加";
+
+"intent.start.title" = "駐車を開始";
+"intent.end.title" = "駐車を終了";
+"intent.find.title" = "車はどこ";
+"control.start" = "駐車を開始";
+"control.start.description" = "現在地で駐車を開始します。";
+"control.end" = "駐車を終了";
+"control.end.description" = "進行中の駐車を終了します。";
+"control.find" = "車を探す";
+"control.find.description" = "駐車位置を地図で開きます。";
