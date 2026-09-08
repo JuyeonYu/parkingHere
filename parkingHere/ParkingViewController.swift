@@ -157,10 +157,9 @@ final class ParkingViewController: UIViewController {
                                       message: L("parking.endConfirm.message"),
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: L("common.cancel"), style: .cancel))
-        alert.addAction(UIAlertAction(title: L("parking.end"), style: .destructive) { [weak self] _ in
-            // dismiss 완료 전에 초기화해야 메인 화면 복귀 시 주차 화면이 다시 뜨지 않는다.
+        alert.addAction(UIAlertAction(title: L("parking.end"), style: .destructive) { _ in
+            // 화면 닫기는 세션 변경 알림을 받은 MainViewController 가 맡는다.
             ParkingSessionStore.end()
-            self?.dismiss(animated: true)
         })
         present(alert, animated: true)
     }

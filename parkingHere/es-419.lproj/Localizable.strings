@@ -33,3 +33,31 @@
 "common.cancel" = "Cancelar";
 "common.ok" = "Aceptar";
 "common.settings" = "Abrir Ajustes";
+
+"intent.start.title" = "Iniciar estacionamiento";
+"intent.start.description" = "Guarda tu ubicación e inicia el estacionamiento.";
+"intent.start.shortTitle" = "Iniciar";
+"intent.start.done" = "Estacionamiento iniciado. Puedes verlo en la pantalla bloqueada.";
+"intent.start.done.noLocation" = "Estacionamiento iniciado sin ubicación.";
+"intent.param.location" = "Ubicación";
+"intent.param.memo" = "Nota";
+"intent.end.title" = "Finalizar estacionamiento";
+"intent.end.description" = "Finaliza el estacionamiento actual.";
+"intent.end.shortTitle" = "Finalizar";
+"intent.end.done" = "Estacionamiento finalizado.";
+"intent.find.title" = "Dónde está mi coche";
+"intent.find.description" = "Te dice dónde estacionaste y hace cuánto, y abre el mapa.";
+"intent.find.shortTitle" = "Dónde está mi coche";
+"intent.find.statusMemo %@ %@" = "Estacionaste en %1$@ hace %2$@.";
+"intent.find.status %@" = "Estacionaste hace %@.";
+"intent.noSession" = "No tienes un estacionamiento en curso.";
+
+"guide.title" = "Inicia el estacionamiento automáticamente";
+"guide.subtitle" = "Configura una automatización de Atajos una sola vez y tu ubicación se guardará y mostrará en la pantalla bloqueada cada vez que bajes del coche.";
+"guide.step1" = "Abre la app Atajos y crea una automatización nueva en la pestaña Automatización.";
+"guide.step2" = "Elige el disparador Bluetooth, selecciona tu coche y activa \"Se desconecta\" y \"Ejecutar de inmediato\". El disparador de CarPlay también sirve.";
+"guide.step3" = "Agrega la acción \"Obtener ubicación actual\" y luego \"Iniciar estacionamiento\" de Encontrar mi coche, conectando su Ubicación a Ubicación actual.";
+"guide.step4" = "¡Listo! El estacionamiento se iniciará solo al apagar el motor y lo verás en la pantalla bloqueada y en la Dynamic Island.";
+"guide.openShortcuts" = "Abrir Atajos";
+"guide.siriTip" = "Pídele a Siri \"Dónde está mi coche en Encontrar mi coche\" para escuchar dónde estacionaste y abrir el mapa.";
+"guide.requiresIOS17" = "Las automatizaciones y Siri requieren iOS 17.2 o posterior.";

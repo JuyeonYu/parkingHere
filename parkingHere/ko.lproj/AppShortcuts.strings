@@ -1,0 +1,8 @@
+"Start parking with ${applicationName}" = "${applicationName} 주차 시작";
+"${applicationName} start parking" = "${applicationName}에서 주차 시작";
+"I parked with ${applicationName}" = "${applicationName} 주차했어";
+"End parking with ${applicationName}" = "${applicationName} 주차 종료";
+"${applicationName} end parking" = "${applicationName}에서 주차 종료";
+"Where is my car in ${applicationName}" = "${applicationName} 내 차 어디야";
+"Find my car with ${applicationName}" = "${applicationName}에서 내 차 찾기";
+"${applicationName} where did I park" = "${applicationName} 어디에 주차했지";

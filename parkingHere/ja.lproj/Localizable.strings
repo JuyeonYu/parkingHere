@@ -33,3 +33,31 @@
 "common.cancel" = "キャンセル";
 "common.ok" = "OK";
 "common.settings" = "設定を開く";
+
+"intent.start.title" = "駐車を開始";
+"intent.start.description" = "位置を保存して駐車を開始します。";
+"intent.start.shortTitle" = "駐車を開始";
+"intent.start.done" = "駐車を開始しました。ロック画面で確認できます。";
+"intent.start.done.noLocation" = "位置情報なしで駐車を開始しました。";
+"intent.param.location" = "位置";
+"intent.param.memo" = "メモ";
+"intent.end.title" = "駐車を終了";
+"intent.end.description" = "進行中の駐車を終了します。";
+"intent.end.shortTitle" = "駐車を終了";
+"intent.end.done" = "駐車を終了しました。";
+"intent.find.title" = "車はどこ";
+"intent.find.description" = "駐車位置と経過時間を伝え、地図を開きます。";
+"intent.find.shortTitle" = "車はどこ";
+"intent.find.statusMemo %@ %@" = "%1$@に駐車してから%2$@経ちました。";
+"intent.find.status %@" = "駐車してから%@経ちました。";
+"intent.noSession" = "進行中の駐車はありません。";
+
+"guide.title" = "エンジンを切ると自動で駐車開始";
+"guide.subtitle" = "ショートカットのオートメーションを一度設定すれば、車を降りるたびに位置が保存され、ロック画面に駐車状況が表示されます。";
+"guide.step1" = "ショートカットAppを開き、「オートメーション」タブで新規オートメーションを作成します。";
+"guide.step2" = "トリガーに「Bluetooth」を選び、車のデバイスを選択して「接続解除時」と「すぐに実行」をオンにします。CarPlayトリガーでも構いません。";
+"guide.step3" = "アクションに「現在地を取得」を追加し、続けて「私の車を見つける」の「駐車を開始」を追加します。位置に「現在地」を接続してください。";
+"guide.step4" = "完了！エンジンを切ると自動で駐車が始まり、ロック画面とDynamic Islandですぐ確認できます。";
+"guide.openShortcuts" = "ショートカットを開く";
+"guide.siriTip" = "Siriに「私の車を見つけるで車はどこ」と話しかけると、駐車位置と経過時間を教えて地図を開きます。";
+"guide.requiresIOS17" = "オートメーションとSiriはiOS 17.2以降で利用できます。";

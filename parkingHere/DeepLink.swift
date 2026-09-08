@@ -30,3 +30,12 @@ enum DeepLink: Equatable {
         }
     }
 }
+
+/// 앱 프로세스 안(App Intent 등)에서 화면 이동을 요청할 때 쓴다. SceneDelegate 가 handler 를 등록한다.
+enum DeepLinkRouter {
+    static var handler: ((DeepLink) -> Void)?
+
+    static func open(_ link: DeepLink) {
+        DispatchQueue.main.async { handler?(link) }
+    }
+}

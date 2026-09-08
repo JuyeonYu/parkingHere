@@ -1,0 +1,8 @@
+"Start parking with ${applicationName}" = "${applicationName}で駐車を開始";
+"${applicationName} start parking" = "${applicationName} 駐車開始";
+"I parked with ${applicationName}" = "${applicationName} 駐車した";
+"End parking with ${applicationName}" = "${applicationName}で駐車を終了";
+"${applicationName} end parking" = "${applicationName} 駐車終了";
+"Where is my car in ${applicationName}" = "${applicationName}で車はどこ";
+"Find my car with ${applicationName}" = "${applicationName}で車を探す";
+"${applicationName} where did I park" = "${applicationName} どこに駐車した";

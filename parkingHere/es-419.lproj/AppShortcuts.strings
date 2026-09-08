@@ -1,0 +1,8 @@
+"Start parking with ${applicationName}" = "Iniciar estacionamiento con ${applicationName}";
+"${applicationName} start parking" = "${applicationName} iniciar estacionamiento";
+"I parked with ${applicationName}" = "Estacioné con ${applicationName}";
+"End parking with ${applicationName}" = "Finalizar estacionamiento con ${applicationName}";
+"${applicationName} end parking" = "${applicationName} finalizar estacionamiento";
+"Where is my car in ${applicationName}" = "Dónde está mi coche en ${applicationName}";
+"Find my car with ${applicationName}" = "Encontrar mi coche con ${applicationName}";
+"${applicationName} where did I park" = "${applicationName} dónde estacioné";

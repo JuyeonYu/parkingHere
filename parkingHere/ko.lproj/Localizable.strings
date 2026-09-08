@@ -33,3 +33,31 @@
 "common.cancel" = "취소";
 "common.ok" = "확인";
 "common.settings" = "설정 열기";
+
+"intent.start.title" = "주차 시작";
+"intent.start.description" = "위치를 저장하고 주차를 시작합니다.";
+"intent.start.shortTitle" = "주차 시작";
+"intent.start.done" = "주차를 시작했어요. 잠금 화면에서 확인할 수 있어요.";
+"intent.start.done.noLocation" = "위치 없이 주차를 시작했어요.";
+"intent.param.location" = "위치";
+"intent.param.memo" = "메모";
+"intent.end.title" = "주차 종료";
+"intent.end.description" = "진행 중인 주차를 끝냅니다.";
+"intent.end.shortTitle" = "주차 종료";
+"intent.end.done" = "주차를 종료했어요.";
+"intent.find.title" = "내 차 어디야";
+"intent.find.description" = "주차 위치와 경과 시간을 알려주고 지도를 엽니다.";
+"intent.find.shortTitle" = "내 차 어디야";
+"intent.find.statusMemo %@ %@" = "%1$@에 주차했고 %2$@ 지났어요.";
+"intent.find.status %@" = "주차한 지 %@ 지났어요.";
+"intent.noSession" = "진행 중인 주차가 없어요.";
+
+"guide.title" = "시동 끄면 자동으로 주차 시작";
+"guide.subtitle" = "단축어 자동화를 한 번만 설정하면 차에서 내릴 때 위치가 저장되고 잠금 화면에 주차 현황이 표시됩니다.";
+"guide.step1" = "단축어 앱을 열고 ‘자동화’ 탭에서 새 자동화를 만듭니다.";
+"guide.step2" = "트리거로 ‘블루투스’를 고르고 차량 기기를 선택한 뒤 ‘연결 해제됨’과 ‘즉시 실행’을 켭니다. CarPlay를 쓴다면 ‘CarPlay’ 트리거도 됩니다.";
+"guide.step3" = "동작에 ‘현재 위치 가져오기’를 추가하고, 이어서 ‘내 차를 찾아줘’의 ‘주차 시작’을 추가합니다. 위치 항목에 ‘현재 위치’를 연결하세요.";
+"guide.step4" = "완료! 이제 시동을 끄면 자동으로 주차가 시작되고 잠금 화면과 다이내믹 아일랜드에서 바로 확인할 수 있습니다.";
+"guide.openShortcuts" = "단축어 앱 열기";
+"guide.siriTip" = "Siri에게 “내 차를 찾아줘 내 차 어디야”라고 말하면 위치와 경과 시간을 알려주고 지도를 엽니다.";
+"guide.requiresIOS17" = "자동화와 Siri 기능은 iOS 17.2 이상에서 사용할 수 있습니다.";

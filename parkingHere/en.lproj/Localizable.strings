@@ -33,3 +33,31 @@
 "common.cancel" = "Cancel";
 "common.ok" = "OK";
 "common.settings" = "Open Settings";
+
+"intent.start.title" = "Start Parking";
+"intent.start.description" = "Saves your location and starts a parking session.";
+"intent.start.shortTitle" = "Start Parking";
+"intent.start.done" = "Parking started. You can check it on the Lock Screen.";
+"intent.start.done.noLocation" = "Parking started without a location.";
+"intent.param.location" = "Location";
+"intent.param.memo" = "Note";
+"intent.end.title" = "End Parking";
+"intent.end.description" = "Ends the current parking session.";
+"intent.end.shortTitle" = "End Parking";
+"intent.end.done" = "Parking ended.";
+"intent.find.title" = "Where Is My Car";
+"intent.find.description" = "Tells you where you parked and how long ago, then opens the map.";
+"intent.find.shortTitle" = "Where Is My Car";
+"intent.find.statusMemo %@ %@" = "You parked at %1$@, %2$@ ago.";
+"intent.find.status %@" = "You parked %@ ago.";
+"intent.noSession" = "You don't have an active parking session.";
+
+"guide.title" = "Start parking automatically";
+"guide.subtitle" = "Set up a Shortcuts automation once, and your location is saved and shown on the Lock Screen whenever you leave the car.";
+"guide.step1" = "Open the Shortcuts app and create a new automation in the Automation tab.";
+"guide.step2" = "Choose the Bluetooth trigger, pick your car, and turn on \"Is Disconnected\" and \"Run Immediately\". The CarPlay trigger works too.";
+"guide.step3" = "Add the \"Get Current Location\" action, then add \"Start Parking\" from Find My Car and connect its Location to Current Location.";
+"guide.step4" = "Done! Parking now starts by itself when you turn off the engine, right on the Lock Screen and Dynamic Island.";
+"guide.openShortcuts" = "Open Shortcuts";
+"guide.siriTip" = "Ask Siri \"Where is my car in Find My Car\" to hear where you parked and open the map.";
+"guide.requiresIOS17" = "Automations and Siri require iOS 17.2 or later.";

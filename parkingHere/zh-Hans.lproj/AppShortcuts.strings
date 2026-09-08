@@ -1,0 +1,8 @@
+"Start parking with ${applicationName}" = "用${applicationName}开始停车";
+"${applicationName} start parking" = "${applicationName} 开始停车";
+"I parked with ${applicationName}" = "${applicationName} 我停好车了";
+"End parking with ${applicationName}" = "用${applicationName}结束停车";
+"${applicationName} end parking" = "${applicationName} 结束停车";
+"Where is my car in ${applicationName}" = "${applicationName} 我的车在哪";
+"Find my car with ${applicationName}" = "用${applicationName}找我的车";
+"${applicationName} where did I park" = "${applicationName} 我把车停哪了";

@@ -26,6 +26,11 @@ struct ParkingSession {
     }
 }
 
+extension Notification.Name {
+    /// 주차가 시작되거나 끝났을 때. App Intent 등 화면 밖에서 바뀐 경우 UI 가 따라가도록 한다.
+    static let parkingSessionDidChange = Notification.Name("parkingSessionDidChange")
+}
+
 /// 주차 정보 저장소. 사진은 `CarImageStore`, 나머지는 UserDefaults 에 둔다.
 /// 키 이름은 이전 버전과 같아서 업데이트 후에도 진행 중인 주차가 유지된다.
 enum ParkingSessionStore {
@@ -65,6 +70,7 @@ enum ParkingSessionStore {
             CarImageStore.delete()
         }
         ParkingActivityController.start(session)
+        notifyChange()
     }
 
     static func end() {
@@ -72,5 +78,13 @@ enum ParkingSessionStore {
             .forEach { defaults.removeObject(forKey: $0) }
         CarImageStore.delete()
         ParkingActivityController.endAll()
+        notifyChange()
+    }
+
+    /// 호출한 쪽의 화면 전환이 먼저 끝나도록 다음 런루프에 알린다.
+    private static func notifyChange() {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .parkingSessionDidChange, object: nil)
+        }
     }
 }

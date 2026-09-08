@@ -1,0 +1,8 @@
+"Start parking with ${applicationName}" = "Start parking with ${applicationName}";
+"${applicationName} start parking" = "${applicationName} start parking";
+"I parked with ${applicationName}" = "I parked with ${applicationName}";
+"End parking with ${applicationName}" = "End parking with ${applicationName}";
+"${applicationName} end parking" = "${applicationName} end parking";
+"Where is my car in ${applicationName}" = "Where is my car in ${applicationName}";
+"Find my car with ${applicationName}" = "Find my car with ${applicationName}";
+"${applicationName} where did I park" = "${applicationName} where did I park";

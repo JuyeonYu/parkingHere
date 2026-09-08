@@ -19,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
 
+        DeepLinkRouter.handler = { [weak self] link in self?.route(link) }
         if let url = connectionOptions.urlContexts.first?.url {
             pendingDeepLink = DeepLink(url: url)
         }
@@ -26,8 +27,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url, let link = DeepLink(url: url) else { return }
+        route(link)
+    }
+
+    private func route(_ link: DeepLink) {
         pendingDeepLink = link
-        if scene.activationState == .foregroundActive {
+        if window?.windowScene?.activationState == .foregroundActive {
             flushPendingDeepLink()
         }
     }

@@ -40,6 +40,11 @@ final class MainViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionDidChange),
+                                               name: .parkingSessionDidChange,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -83,9 +88,17 @@ final class MainViewController: UIViewController {
                                          font: DS.Font.rounded(.subheadline),
                                          color: .secondaryLabel,
                                          lines: 0)
-        let header = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
-        header.axis = .vertical
-        header.spacing = 4
+        let titles = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        titles.axis = .vertical
+        titles.spacing = 4
+
+        let automationButton = UIButton.makeFloatingIcon(systemImage: "wand.and.stars")
+        automationButton.accessibilityLabel = L("guide.title")
+        automationButton.addTarget(self, action: #selector(didTapAutomation), for: .touchUpInside)
+
+        let header = UIStackView(arrangedSubviews: [titles, automationButton])
+        header.spacing = 12
+        header.alignment = .top
 
         let memoCard = CardView()
         memoTextView.backgroundColor = .clear
@@ -138,6 +151,22 @@ final class MainViewController: UIViewController {
             present(ImageDetailViewController(image: image), animated: true)
         } else {
             openCamera()
+        }
+    }
+
+    @objc private func didTapAutomation() {
+        present(AutomationGuideViewController(), animated: true)
+    }
+
+    /// 주차 상태가 화면 밖(Siri, 단축어, 주차 종료 버튼)에서 바뀌면 화면을 맞춘다.
+    @objc private func sessionDidChange() {
+        guard hasAppeared else { return }
+        if ParkingSessionStore.current == nil {
+            if presentedViewController is ParkingViewController {
+                dismiss(animated: true)
+            }
+        } else {
+            restoreSessionIfNeeded()
         }
     }
 

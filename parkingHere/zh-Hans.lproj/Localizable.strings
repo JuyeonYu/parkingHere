@@ -33,3 +33,31 @@
 "common.cancel" = "取消";
 "common.ok" = "好";
 "common.settings" = "打开设置";
+
+"intent.start.title" = "开始停车";
+"intent.start.description" = "保存位置并开始停车。";
+"intent.start.shortTitle" = "开始停车";
+"intent.start.done" = "已开始停车，可在锁定屏幕查看。";
+"intent.start.done.noLocation" = "已在无位置信息的情况下开始停车。";
+"intent.param.location" = "位置";
+"intent.param.memo" = "备注";
+"intent.end.title" = "结束停车";
+"intent.end.description" = "结束当前停车。";
+"intent.end.shortTitle" = "结束停车";
+"intent.end.done" = "已结束停车。";
+"intent.find.title" = "我的车在哪";
+"intent.find.description" = "告诉您停车位置和已停时间，并打开地图。";
+"intent.find.shortTitle" = "我的车在哪";
+"intent.find.statusMemo %@ %@" = "您把车停在%1$@，已经%2$@了。";
+"intent.find.status %@" = "您已经停车%@了。";
+"intent.noSession" = "当前没有进行中的停车。";
+
+"guide.title" = "熄火后自动开始停车";
+"guide.subtitle" = "只需设置一次快捷指令自动化，每次下车时都会保存位置并在锁定屏幕显示停车状态。";
+"guide.step1" = "打开“快捷指令”App，在“自动化”标签中新建自动化。";
+"guide.step2" = "触发条件选择“蓝牙”，选中您的车载设备，并开启“已断开连接”和“立即运行”。使用CarPlay的话也可选择“CarPlay”触发。";
+"guide.step3" = "添加“获取当前位置”操作，再添加“找到我的车”的“开始停车”，并把“位置”连接到“当前位置”。";
+"guide.step4" = "完成！现在熄火后会自动开始停车，并直接显示在锁定屏幕和灵动岛上。";
+"guide.openShortcuts" = "打开快捷指令";
+"guide.siriTip" = "对Siri说“找到我的车 我的车在哪”，即可听到停车位置和已停时间并打开地图。";
+"guide.requiresIOS17" = "自动化和Siri功能需要iOS 17.2或更高版本。";
