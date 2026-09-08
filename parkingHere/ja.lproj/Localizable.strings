@@ -37,7 +37,7 @@
 "intent.start.description" = "位置を保存して駐車を開始します。";
 "intent.start.shortTitle" = "駐車を開始";
 "intent.start.done" = "駐車を開始しました。ロック画面で確認できます。";
-"intent.start.done.noLocation" = "位置情報なしで駐車を開始しました。";
+"intent.start.done.noLocation" = "位置情報なしで駐車を開始しました。オートメーションの位置に「現在地を取得」を接続すると位置も保存されます。";
 "intent.param.location" = "位置";
 "intent.param.memo" = "メモ";
 "intent.end.title" = "駐車を終了";

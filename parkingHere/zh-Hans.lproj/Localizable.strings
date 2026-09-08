@@ -37,7 +37,7 @@
 "intent.start.description" = "保存位置并开始停车。";
 "intent.start.shortTitle" = "开始停车";
 "intent.start.done" = "已开始停车，可在锁定屏幕查看。";
-"intent.start.done.noLocation" = "已在无位置信息的情况下开始停车。";
+"intent.start.done.noLocation" = "已在无位置信息的情况下开始停车。在自动化的“位置”项连接“获取当前位置”即可一并保存位置。";
 "intent.param.location" = "位置";
 "intent.param.memo" = "备注";
 "intent.end.title" = "结束停车";

@@ -37,7 +37,7 @@
 "intent.start.description" = "Saves your location and starts a parking session.";
 "intent.start.shortTitle" = "Start Parking";
 "intent.start.done" = "Parking started. You can check it on the Lock Screen.";
-"intent.start.done.noLocation" = "Parking started without a location.";
+"intent.start.done.noLocation" = "Parking started without a location. Connect \"Get Current Location\" to the Location field in your automation to save it too.";
 "intent.param.location" = "Location";
 "intent.param.memo" = "Note";
 "intent.end.title" = "End Parking";

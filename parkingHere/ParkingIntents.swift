@@ -23,9 +23,14 @@ struct StartParkingIntent: LiveActivityIntent {
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let trimmed = memo?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        // 단축어가 위치를 넘기지 않았으면(타일에서 바로 실행, Siri 등) 앱이 직접 구해 본다.
+        var coordinate = location?.location?.coordinate
+        if coordinate == nil {
+            coordinate = await OneShotLocation().request()?.coordinate
+        }
         let session = ParkingSession(startedAt: Date(),
                                      memo: trimmed.isEmpty ? nil : trimmed,
-                                     coordinate: location?.location?.coordinate)
+                                     coordinate: coordinate)
         // 이미 주차 중이어도 가장 최근 하차가 현재 주차이므로 새 세션으로 바꾼다.
         ParkingSessionStore.start(session, photo: nil)
         await ParkingReminder.scheduleAddPhoto()

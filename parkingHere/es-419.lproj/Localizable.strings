@@ -37,7 +37,7 @@
 "intent.start.description" = "Guarda tu ubicación e inicia el estacionamiento.";
 "intent.start.shortTitle" = "Iniciar";
 "intent.start.done" = "Estacionamiento iniciado. Puedes verlo en la pantalla bloqueada.";
-"intent.start.done.noLocation" = "Estacionamiento iniciado sin ubicación.";
+"intent.start.done.noLocation" = "Estacionamiento iniciado sin ubicación. Conecta \"Obtener ubicación actual\" al campo Ubicación de tu automatización para guardarla también.";
 "intent.param.location" = "Ubicación";
 "intent.param.memo" = "Nota";
 "intent.end.title" = "Finalizar estacionamiento";

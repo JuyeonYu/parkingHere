@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		025619B048873A8EC207BF83 /* ParkingActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BF94C4B9BB674DB74DC56 /* ParkingActivityController.swift */; };
+		22A337CE734B985093D3FC98 /* OneShotLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3DD6FA59AE66C0C4FC11F /* OneShotLocation.swift */; };
 		28D01CB2DBD86648F15D5224 /* ParkingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F75ECA59EBC3A1175D25C4D /* ParkingActivityAttributes.swift */; };
 		3563FEB0BE7873E37A39B453 /* AppShortcuts.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08F6359492C4770CD5A1ED24 /* AppShortcuts.strings */; };
 		3B291370C9CCF8744D2C6871 /* AutomationGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BEA201CEEE0C481ABF4C71 /* AutomationGuideViewController.swift */; };
@@ -84,6 +85,7 @@
 		7D915B7011D89420C2F102B4 /* ko */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		834BF94C4B9BB674DB74DC56 /* ParkingActivityController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ParkingActivityController.swift; sourceTree = "<group>"; };
 		83B3B06454945A12A6061703 /* es-419 */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/AppShortcuts.strings"; sourceTree = "<group>"; };
+		8CF3DD6FA59AE66C0C4FC11F /* OneShotLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OneShotLocation.swift; sourceTree = "<group>"; };
 		8D5EFD455FA0B3D594938A0E /* ja */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
 		B5EC1C47E5E012173A8130A1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		BEFF474D1456F5B9AC4DADBE /* Pods_parkingHere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkingHere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +162,6 @@
 				FDA194E63242FB5F2EB5404F /* Assets.xcassets */,
 				61882499DFB71CCF1A8B1496 /* Localizable.strings */,
 			);
-			name = ParkingWidget;
 			path = ParkingWidget;
 			sourceTree = "<group>";
 		};
@@ -229,6 +230,7 @@
 				08F6359492C4770CD5A1ED24 /* AppShortcuts.strings */,
 				0E8D7A7AD2E4D693365CCE74 /* PhotoPicker.swift */,
 				73F24031BB247C7401128AEA /* ParkingReminder.swift */,
+				8CF3DD6FA59AE66C0C4FC11F /* OneShotLocation.swift */,
 			);
 			path = parkingHere;
 			sourceTree = "<group>";
@@ -375,9 +377,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-parkingHere/Pods-parkingHere-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-parkingHere/Pods-parkingHere-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -418,6 +424,7 @@
 				3B291370C9CCF8744D2C6871 /* AutomationGuideViewController.swift in Sources */,
 				5834994A8A6EF1DEBBAF9EF8 /* PhotoPicker.swift in Sources */,
 				73C7D846C81B7D7DADA1BF53 /* ParkingReminder.swift in Sources */,
+				22A337CE734B985093D3FC98 /* OneShotLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,8 +693,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
 				INFOPLIST_FILE = parkingHere/Base.lproj/Info.plist;
@@ -698,7 +705,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.findMyCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -710,8 +717,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
 				INFOPLIST_FILE = parkingHere/Base.lproj/Info.plist;
@@ -722,7 +729,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.findMyCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
