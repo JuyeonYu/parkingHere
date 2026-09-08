@@ -54,11 +54,16 @@ final class AutomationGuideViewController: UIViewController {
         stack.setCustomSpacing(24, after: steps[steps.count - 1])
         scrollView.addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
+        let leading = stack.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: DS.screenPadding)
+        let trailing = stack.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -DS.screenPadding)
+        leading.priority = .defaultHigh
+        trailing.priority = .defaultHigh
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 28),
-            stack.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: DS.screenPadding),
-            stack.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -DS.screenPadding),
             stack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -DS.screenPadding),
+            stack.centerXAnchor.constraint(equalTo: scrollView.frameLayoutGuide.centerXAnchor),
+            stack.widthAnchor.constraint(lessThanOrEqualToConstant: DS.maxContentWidth),
+            leading, trailing,
         ])
 
         let closeButton = UIButton.makeFloatingIcon(systemImage: "xmark")

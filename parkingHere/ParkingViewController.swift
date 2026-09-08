@@ -103,19 +103,20 @@ final class ParkingViewController: UIViewController {
         let endButton = UIButton.make(title: L("parking.end"), systemImage: "flag.checkered", style: .destructive)
         endButton.addTarget(self, action: #selector(didTapEnd), for: .touchUpInside)
 
-        let stack = UIStackView(arrangedSubviews: [header, photoCard, timerCard, memoCard, findButton, endButton])
+        let stack = UIStackView(arrangedSubviews: [header, photoCard, timerCard, memoCard, findButton, endButton, UIView.makeSpacer()])
         stack.axis = .vertical
         stack.spacing = DS.spacing
         stack.setCustomSpacing(24, after: header)
         stack.setCustomSpacing(12, after: findButton)
+        stack.setCustomSpacing(0, after: endButton)
         view.addSubview(stack)
-        stack.pinEdges(to: view.safeAreaLayoutGuide,
-                       insets: NSDirectionalEdgeInsets(top: 12, leading: DS.screenPadding,
-                                                       bottom: DS.screenPadding, trailing: DS.screenPadding))
+        stack.pinContent(in: view)
 
-        photoCard.setContentHuggingPriority(.defaultLow, for: .vertical)
+        photoCard.setContentHuggingPriority(DS.stretchHugging, for: .vertical)
         photoCard.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         photoCard.heightAnchor.constraint(greaterThanOrEqualToConstant: 140).isActive = true
+        // iPad 처럼 세로 공간이 넉넉해도 사진 카드가 지나치게 길어지지 않게 한다.
+        photoCard.heightAnchor.constraint(lessThanOrEqualTo: photoCard.widthAnchor, multiplier: 1.3).isActive = true
     }
 
     private func makeMemoCard() -> UIView {

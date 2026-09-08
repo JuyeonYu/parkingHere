@@ -123,19 +123,20 @@ final class MainViewController: UIViewController {
             memoCard.heightAnchor.constraint(equalToConstant: 112),
         ])
 
-        let stack = UIStackView(arrangedSubviews: [header, photoCard, memoCard, startButton])
+        let stack = UIStackView(arrangedSubviews: [header, photoCard, memoCard, startButton, UIView.makeSpacer()])
         stack.axis = .vertical
         stack.spacing = DS.spacing
         stack.setCustomSpacing(24, after: header)
+        stack.setCustomSpacing(0, after: startButton)
         view.addSubview(stack)
-        stack.pinEdges(to: view.safeAreaLayoutGuide,
-                       insets: NSDirectionalEdgeInsets(top: 12, leading: DS.screenPadding,
-                                                       bottom: DS.screenPadding, trailing: DS.screenPadding))
+        stack.pinContent(in: view)
 
         // 사진 카드가 남는 세로 공간을 모두 차지한다.
-        photoCard.setContentHuggingPriority(.defaultLow, for: .vertical)
+        photoCard.setContentHuggingPriority(DS.stretchHugging, for: .vertical)
         photoCard.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         photoCard.heightAnchor.constraint(greaterThanOrEqualToConstant: 180).isActive = true
+        // iPad 처럼 세로 공간이 넉넉해도 사진 카드가 지나치게 길어지지 않게 한다.
+        photoCard.heightAnchor.constraint(lessThanOrEqualTo: photoCard.widthAnchor, multiplier: 1.3).isActive = true
     }
 
     private func photoMenu() -> UIMenu {
@@ -177,15 +178,26 @@ final class MainViewController: UIViewController {
 
     @objc private func didTapStart() {
         view.endEditing(true)
+        startButton.isEnabled = false
         let memo = memoTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        let session = ParkingSession(startedAt: Date(),
-                                     memo: memo.isEmpty ? nil : memo,
-                                     coordinate: locationManager.location?.coordinate)
-        ParkingSessionStore.start(session, photo: photoCard.image)
+        let photo = photoCard.image
 
-        let parkingVC = ParkingViewController(session: session, photo: photoCard.image)
-        present(parkingVC, animated: true) { [weak self] in
-            self?.resetForm()
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
+            // 앱을 열자마자 눌렀거나 사진을 찍고 돌아온 직후라 아직 위치가 없으면 잠깐 기다려 받아 온다.
+            var coordinate = self.locationManager.location?.coordinate
+            if coordinate == nil {
+                coordinate = await OneShotLocation().request(timeout: 3)?.coordinate
+            }
+            self.startButton.isEnabled = true
+
+            let session = ParkingSession(startedAt: Date(), memo: memo.isEmpty ? nil : memo, coordinate: coordinate)
+            ParkingSessionStore.start(session, photo: photo)
+
+            let parkingVC = ParkingViewController(session: session, photo: photo)
+            self.present(parkingVC, animated: true) { [weak self] in
+                self?.resetForm()
+            }
         }
     }
 

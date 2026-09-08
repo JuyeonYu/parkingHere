@@ -18,6 +18,12 @@ enum DS {
     static let cardPadding: CGFloat = 20
     static let buttonHeight: CGFloat = 56
     static let buttonRadius: CGFloat = 18
+    /// iPad 등 넓은 화면에서 콘텐츠가 늘어지지 않도록 하는 최대 폭
+    static let maxContentWidth: CGFloat = 600
+    /// 남는 세로 공간을 가장 먼저 차지하는 뷰(사진 카드)의 hugging 우선순위
+    static let stretchHugging = UILayoutPriority(200)
+    /// 사진 카드가 최대 높이에 닿은 뒤 남는 공간을 받는 스페이서의 hugging 우선순위
+    static let spacerHugging = UILayoutPriority(240)
 
     enum Color {
         static let brand = UIColor(named: "BrandYellow")!
@@ -166,6 +172,30 @@ extension UILabel {
 }
 
 extension UIView {
+    /// 스택 끝에 두는 빈 뷰. 사진 카드가 더 못 늘어날 때(iPad) 남는 공간을 흡수한다.
+    static func makeSpacer() -> UIView {
+        let spacer = UIView()
+        spacer.setContentHuggingPriority(DS.spacerHugging, for: .vertical)
+        return spacer
+    }
+
+    /// 화면 콘텐츠 배치. iPhone 에서는 좌우 여백만 두고, iPad 처럼 넓은 화면에서는 가운데 600pt 컬럼으로 모은다.
+    func pinContent(in view: UIView, top: CGFloat = 12, bottom: CGFloat = DS.screenPadding) {
+        translatesAutoresizingMaskIntoConstraints = false
+        let safe = view.safeAreaLayoutGuide
+        let leading = leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: DS.screenPadding)
+        let trailing = trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -DS.screenPadding)
+        leading.priority = .defaultHigh
+        trailing.priority = .defaultHigh
+        NSLayoutConstraint.activate([
+            topAnchor.constraint(equalTo: safe.topAnchor, constant: top),
+            bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -bottom),
+            centerXAnchor.constraint(equalTo: safe.centerXAnchor),
+            widthAnchor.constraint(lessThanOrEqualToConstant: DS.maxContentWidth),
+            leading, trailing,
+        ])
+    }
+
     func pinEdges(to guide: UILayoutGuide, insets: NSDirectionalEdgeInsets = .zero) {
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

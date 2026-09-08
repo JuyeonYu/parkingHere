@@ -90,13 +90,18 @@ final class MapViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         let safe = view.safeAreaLayoutGuide
+        let cardLeading = infoCard.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: DS.screenPadding)
+        let cardTrailing = infoCard.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -DS.screenPadding)
+        cardLeading.priority = .defaultHigh
+        cardTrailing.priority = .defaultHigh
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: safe.topAnchor, constant: 12),
             closeButton.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: DS.screenPadding),
             locateButton.topAnchor.constraint(equalTo: safe.topAnchor, constant: 12),
             locateButton.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -DS.screenPadding),
-            infoCard.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: DS.screenPadding),
-            infoCard.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -DS.screenPadding),
+            infoCard.centerXAnchor.constraint(equalTo: safe.centerXAnchor),
+            infoCard.widthAnchor.constraint(lessThanOrEqualToConstant: DS.maxContentWidth),
+            cardLeading, cardTrailing,
             infoCard.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -DS.screenPadding),
         ])
     }
