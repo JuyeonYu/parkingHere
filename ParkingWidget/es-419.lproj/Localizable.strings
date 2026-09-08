@@ -1,0 +1,4 @@
+"activity.title" = "Estacionado";
+"activity.elapsed" = "transcurrido";
+"activity.findCar" = "Encontrar mi coche";
+"activity.startedAt %@" = "Inició a las %@";

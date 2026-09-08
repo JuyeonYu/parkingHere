@@ -64,11 +64,13 @@ enum ParkingSessionStore {
         } else {
             CarImageStore.delete()
         }
+        ParkingActivityController.start(session)
     }
 
     static func end() {
         [Key.isParking, Key.startedAt, Key.memo, Key.latitude, Key.longitude]
             .forEach { defaults.removeObject(forKey: $0) }
         CarImageStore.delete()
+        ParkingActivityController.endAll()
     }
 }

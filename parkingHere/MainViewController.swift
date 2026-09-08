@@ -19,6 +19,9 @@ final class MainViewController: UIViewController {
                                                     color: .placeholderText)
     private let startButton = UIButton.make(title: L("parking.start"), systemImage: "car.fill", style: .primary)
     private let locationManager = CLLocationManager()
+    /// 첫 viewDidAppear 전에 들어온 딥링크. 화면이 뜬 뒤 처리한다.
+    private var pendingDeepLink: DeepLink?
+    private var hasAppeared = false
 
     // MARK: - Lifecycle
 
@@ -37,11 +40,6 @@ final class MainViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(restoreSessionIfNeeded),
-                                               name: UIApplication.willEnterForegroundNotification,
-                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,8 +49,25 @@ final class MainViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        hasAppeared = true
         // 앱을 완전히 종료했다 다시 켰을 때 진행 중인 주차 화면으로 복귀한다.
         restoreSessionIfNeeded()
+        ParkingActivityController.sync(with: ParkingSessionStore.current)
+        if let link = pendingDeepLink {
+            pendingDeepLink = nil
+            handle(link)
+        }
+    }
+
+    /// 라이브 액티비티 등에서 열린 딥링크를 처리한다.
+    func handle(_ link: DeepLink) {
+        guard hasAppeared else {
+            pendingDeepLink = link
+            return
+        }
+        restoreSessionIfNeeded()
+        guard link == .map, let parkingVC = presentedViewController as? ParkingViewController else { return }
+        parkingVC.showMap()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -140,7 +155,7 @@ final class MainViewController: UIViewController {
         }
     }
 
-    @objc private func restoreSessionIfNeeded() {
+    private func restoreSessionIfNeeded() {
         guard presentedViewController == nil, let session = ParkingSessionStore.current else { return }
         present(ParkingViewController(session: session, photo: CarImageStore.load()), animated: false)
     }

@@ -146,6 +146,12 @@ final class ParkingViewController: UIViewController {
         present(MapViewController(session: session), animated: true)
     }
 
+    /// 딥링크로 지도를 연다. 이미 다른 화면이 떠 있으면 그대로 둔다.
+    func showMap() {
+        guard presentedViewController == nil else { return }
+        didTapFindCar()
+    }
+
     @objc private func didTapEnd() {
         let alert = UIAlertController(title: L("parking.endConfirm.title"),
                                       message: L("parking.endConfirm.message"),

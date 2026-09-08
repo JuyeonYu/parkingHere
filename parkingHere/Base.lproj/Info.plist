@@ -16,6 +16,17 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.johnny.findMyCar</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>parkinghere</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
@@ -28,6 +39,8 @@
 	<string>Used to save where you parked and guide you back to your car.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used to save where you parked and guide you back to your car.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -1,0 +1,4 @@
+"activity.title" = "停车中";
+"activity.elapsed" = "已停";
+"activity.findCar" = "找到我的车";
+"activity.startedAt %@" = "%@ 开始";
