@@ -17,7 +17,7 @@ class ParkingViewController: UIViewController {
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var endParkingButton: UIButton!
     @IBOutlet weak var parkingTimeLabel: UILabel!
-    @IBOutlet weak var carImageView: UIImageView!
+    @IBOutlet weak var carImageView: CarImageView!
     @IBOutlet weak var trackCarButton: UIButton!
     @IBAction func didTapTrackCarButton(_ sender: Any) {
         guard UserDefaults.standard.double(forKey: "latitude") != 0 else {
@@ -39,7 +39,7 @@ class ParkingViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: "isParking")
         UserDefaults.standard.set(nil, forKey: "parkingTime")
         UserDefaults.standard.set(nil, forKey: "memo")
-        UserDefaults.standard.set(nil, forKey: "carImage")
+        CarImageStore.delete()
         UserDefaults.standard.set(0, forKey: "latitude")
         UserDefaults.standard.set(0, forKey: "longitude")
     }
@@ -50,11 +50,10 @@ class ParkingViewController: UIViewController {
             return
         }
         
-        vc.carImageView.image = UIImage(systemName: "car.fill")
-        vc.hasImage = false
-        self.dismiss(animated: true, completion: {
-            self.initParkingInformation()
-        })
+        // dismiss 완료 전에 초기화해야 메인 화면 복귀 시 주차 화면이 다시 뜨지 않는다.
+        initParkingInformation()
+        vc.carImageView.showPlaceholder()
+        self.dismiss(animated: true)
     }
     
     fileprivate func getSecondParking() -> Int {

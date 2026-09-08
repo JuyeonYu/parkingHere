@@ -22,7 +22,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c36-O8-84D">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="359"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JxV-rr-lVY">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" customClass="CarImageView" customModule="parkingHere" customModuleProvider="target" id="JxV-rr-lVY">
                                                 <rect key="frame" x="0.0" y="21.5" width="394" height="356.5"/>
                                                 <color key="tintColor" red="0.97019964459999997" green="0.87431508300000005" blue="0.34590119120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
@@ -51,15 +51,14 @@
                                             <constraint firstItem="QUM-6B-cxU" firstAttribute="centerY" secondItem="JxV-rr-lVY" secondAttribute="centerY" id="0iM-Sn-LH7"/>
                                             <constraint firstItem="QUM-6B-cxU" firstAttribute="height" secondItem="JxV-rr-lVY" secondAttribute="height" multiplier="0.3" id="7Ce-dN-92G"/>
                                             <constraint firstItem="QUM-6B-cxU" firstAttribute="centerX" secondItem="c36-O8-84D" secondAttribute="centerX" id="8eZ-O2-u08"/>
-                                            <constraint firstItem="JxV-rr-lVY" firstAttribute="top" secondItem="c36-O8-84D" secondAttribute="top" constant="20" id="Gbs-Fm-sep"/>
+                                            <constraint firstItem="JxV-rr-lVY" firstAttribute="top" secondItem="c36-O8-84D" secondAttribute="top" id="Gbs-Fm-sep"/>
                                             <constraint firstAttribute="trailing" secondItem="JxV-rr-lVY" secondAttribute="trailing" id="Hzu-t0-H2a"/>
-                                            <constraint firstItem="kiR-CN-OI7" firstAttribute="centerY" secondItem="c36-O8-84D" secondAttribute="centerY" multiplier="1.75" id="Kax-NY-JAQ"/>
-                                            <constraint firstItem="JxV-rr-lVY" firstAttribute="height" secondItem="c36-O8-84D" secondAttribute="height" multiplier="0.5" constant="179.5" id="Kgc-w1-ddG"/>
-                                            <constraint firstItem="kiR-CN-OI7" firstAttribute="centerX" secondItem="c36-O8-84D" secondAttribute="centerX" multiplier="1.75" id="Vlw-zT-63V"/>
+                                            <constraint firstItem="JxV-rr-lVY" firstAttribute="bottom" secondItem="kiR-CN-OI7" secondAttribute="bottom" constant="12" id="Kax-NY-JAQ"/>
+                                            <constraint firstItem="JxV-rr-lVY" firstAttribute="trailing" secondItem="kiR-CN-OI7" secondAttribute="trailing" constant="12" id="Vlw-zT-63V"/>
                                             <constraint firstItem="JxV-rr-lVY" firstAttribute="leading" secondItem="c36-O8-84D" secondAttribute="leading" id="Xeq-OO-uYR"/>
-                                            <constraint firstItem="kiR-CN-OI7" firstAttribute="height" secondItem="JxV-rr-lVY" secondAttribute="height" multiplier="0.2" id="ccJ-M8-5xF"/>
-                                            <constraint firstItem="kiR-CN-OI7" firstAttribute="width" secondItem="JxV-rr-lVY" secondAttribute="width" multiplier="0.2" id="gGA-u2-e2k"/>
-                                            <constraint firstAttribute="bottom" secondItem="JxV-rr-lVY" secondAttribute="bottom" constant="-20" id="vBA-pj-hoQ"/>
+                                            <constraint firstItem="kiR-CN-OI7" firstAttribute="height" secondItem="JxV-rr-lVY" secondAttribute="height" multiplier="0.15" id="ccJ-M8-5xF"/>
+                                            <constraint firstItem="kiR-CN-OI7" firstAttribute="width" secondItem="kiR-CN-OI7" secondAttribute="height" id="gGA-u2-e2k"/>
+                                            <constraint firstAttribute="bottom" secondItem="JxV-rr-lVY" secondAttribute="bottom" id="vBA-pj-hoQ"/>
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="간단메모" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0uq-bx-Uic">
@@ -82,6 +81,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="N1Z-PA-79w" firstAttribute="height" secondItem="hIV-Ui-egc" secondAttribute="height" multiplier="0.1" id="s8M-TN-arX"/>
+                                    <constraint firstItem="c36-O8-84D" firstAttribute="height" secondItem="hIV-Ui-egc" secondAttribute="height" multiplier="0.55" id="cAr-Ph-oto"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -117,7 +117,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HWH-mP-Aim">
                                 <rect key="frame" x="20" y="54" width="374" height="798"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="L3O-hO-7j9">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" customClass="CarImageView" customModule="parkingHere" customModuleProvider="target" id="L3O-hO-7j9">
                                         <rect key="frame" x="0.0" y="1.5" width="374" height="396.5"/>
                                         <color key="tintColor" red="0.59620219470000002" green="0.60643571620000003" blue="0.61041432620000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>

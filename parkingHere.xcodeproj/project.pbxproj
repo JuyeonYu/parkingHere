@@ -17,6 +17,8 @@
 		CE69A8F325860BEB00C3B1E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE69A8F225860BEB00C3B1E1 /* Assets.xcassets */; };
 		CE69A8F625860BEB00C3B1E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE69A8F425860BEB00C3B1E1 /* LaunchScreen.storyboard */; };
 		CE69A91F258629DA00C3B1E1 /* ParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */; };
+		CE7A0003259F000100C3B1E1 /* CarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A0004259F000100C3B1E1 /* CarImageView.swift */; };
+		CE7A0001259F000100C3B1E1 /* CarImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A0002259F000100C3B1E1 /* CarImageStore.swift */; };
 		CEDEB0242587C9A0000EBF1B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB0232587C9A0000EBF1B /* MapViewController.swift */; };
 		CEDEB0342587DCA1000EBF1B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDEB0362587DCA1000EBF1B /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -41,6 +43,8 @@
 		CE69A8F225860BEB00C3B1E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE69A8F525860BEB00C3B1E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
+		CE7A0004259F000100C3B1E1 /* CarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageView.swift; sourceTree = "<group>"; };
+		CE7A0002259F000100C3B1E1 /* CarImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageStore.swift; sourceTree = "<group>"; };
 		CEBD4F00258B6E56000379A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		CEBD4F02258B6E5A000379A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
 		CEBD4F03258B6E5E000379A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Info.plist"; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				CE69A8EB25860BEA00C3B1E1 /* SceneDelegate.swift */,
 				CE69A8ED25860BEA00C3B1E1 /* MainViewController.swift */,
 				CE69A91E258629DA00C3B1E1 /* ParkingViewController.swift */,
+				CE7A0004259F000100C3B1E1 /* CarImageView.swift */,
+				CE7A0002259F000100C3B1E1 /* CarImageStore.swift */,
 				CE1C1A0C2589017C0054A6AA /* ImageDetailViewController.swift */,
 				CEDEB0232587C9A0000EBF1B /* MapViewController.swift */,
 				CEDEB0362587DCA1000EBF1B /* Localizable.strings */,
@@ -250,6 +256,8 @@
 				CE69A8EE25860BEA00C3B1E1 /* MainViewController.swift in Sources */,
 				CE1C1A0D2589017C0054A6AA /* ImageDetailViewController.swift in Sources */,
 				CE69A91F258629DA00C3B1E1 /* ParkingViewController.swift in Sources */,
+				CE7A0003259F000100C3B1E1 /* CarImageView.swift in Sources */,
+				CE7A0001259F000100C3B1E1 /* CarImageStore.swift in Sources */,
 				CE69A8EA25860BEA00C3B1E1 /* AppDelegate.swift in Sources */,
 				CEDEB0242587C9A0000EBF1B /* MapViewController.swift in Sources */,
 				CE69A8EC25860BEA00C3B1E1 /* SceneDelegate.swift in Sources */,

@@ -9,9 +9,7 @@ import UIKit
 import CoreLocation
 
 class MainViewController: UIViewController {
-    var hasImage: Bool = false
-    
-    @IBOutlet weak var carImageView: UIImageView!
+    @IBOutlet weak var carImageView: CarImageView!
     @IBOutlet weak var memoTextField: UITextView!
     @IBOutlet weak var startParkingButton: UIButton!
     @IBOutlet weak var addCarButton: UIButton!
@@ -29,9 +27,8 @@ class MainViewController: UIViewController {
         
         let resetAction = UIAlertAction(title: NSLocalizedString("reset", comment: ""), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.addCarButton.isHidden = false
-            self.resetCarButton.isHidden =  true
-            self.carImageView.image = UIImage(systemName: "car.fill")
+            self.carImageView.showPlaceholder()
+            self.updateCarButtons()
         })
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: {
@@ -54,10 +51,15 @@ class MainViewController: UIViewController {
         
         if memoTextField.text != NSLocalizedString("memo", comment: "") {
             UserDefaults.standard.set(memoTextField.text, forKey: "memo")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "memo")
         }
         
-        if hasImage {
-            UserDefaults.standard.set(carImageView.image?.pngData(), forKey: "carImage")
+        // 사진은 UserDefaults 가 아니라 파일로 저장한다. (재시작 후 사진 유실 버그 수정)
+        if carImageView.hasPhoto, let image = carImageView.image {
+            CarImageStore.save(image)
+        } else {
+            CarImageStore.delete()
         }
         
         UserDefaults.standard.set(locationManager?.location?.coordinate.longitude, forKey: "longitude")
@@ -71,7 +73,8 @@ class MainViewController: UIViewController {
     
     func openCamera() {
         let vc = UIImagePickerController()
-        vc.sourceType = .camera
+        // 카메라가 없는 기기(시뮬레이터 등)에서는 사진 앨범으로 대체한다.
+        vc.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
         vc.delegate = self
         present(vc, animated: true)
     }
@@ -102,19 +105,24 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if hasImage {
-            addCarButton.isHidden = true
-            resetCarButton.isHidden = false
-        } else {
-            addCarButton.isHidden = false
-            resetCarButton.isHidden = true
-        }
+        updateCarButtons()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(goParkingVC),
                                                name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
         
         initLocationManager()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 앱을 완전히 종료했다 다시 켰을 때도 진행 중인 주차 화면으로 복귀한다.
+        goParkingVC()
+    }
+    
+    func updateCarButtons() {
+        addCarButton.isHidden = carImageView.hasPhoto
+        resetCarButton.isHidden = !carImageView.hasPhoto
     }
     
     @objc func didTapCarImageView() {
@@ -129,24 +137,17 @@ class MainViewController: UIViewController {
     }
     
     @objc func goParkingVC() {
-        if UserDefaults.standard.bool(forKey: "isParking") {
-            NotificationCenter.default.removeObserver(self)
-            
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ParkingVC") as? ParkingViewController else { return }
-            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-            vc.modalPresentationStyle = .fullScreen
-            
-            if let carPNG = UserDefaults.standard.data(forKey: "carImage") {
-                vc.carImage = UIImage(data: carPNG)
-            } else {
-                vc.carImage = UIImage(systemName: "car.fill")
-            }
-            
-            if memoTextField.text != NSLocalizedString("memo", comment: "") {
-                vc.memoText = memoTextField.text
-            }
-            self.present(vc, animated: true)
-        }
+        guard UserDefaults.standard.bool(forKey: "isParking"), presentedViewController == nil else { return }
+        NotificationCenter.default.removeObserver(self)
+        
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ParkingVC") as? ParkingViewController else { return }
+        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        vc.modalPresentationStyle = .fullScreen
+        
+        // 저장된 값에서 복원해야 앱 재시작 후에도 사진과 메모가 유지된다.
+        vc.carImage = CarImageStore.load() ?? CarImageView.placeholder
+        vc.memoText = UserDefaults.standard.string(forKey: "memo")
+        self.present(vc, animated: true)
     }
     
     func findAddr(lat: CLLocationDegrees, long: CLLocationDegrees) {
@@ -179,7 +180,6 @@ extension MainViewController: UIImagePickerControllerDelegate {
                 return
             }
             self.carImageView.image = image
-            hasImage = true
             picker.dismiss(animated: true)
     }
 }
