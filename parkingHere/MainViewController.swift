@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  parkingHere
 //
 //  Created by Juyeon on 2020/12/13.
@@ -8,198 +8,195 @@
 import UIKit
 import CoreLocation
 
-class MainViewController: UIViewController {
-    @IBOutlet weak var carImageView: CarImageView!
-    @IBOutlet weak var memoTextField: UITextView!
-    @IBOutlet weak var startParkingButton: UIButton!
-    @IBOutlet weak var addCarButton: UIButton!
-    @IBOutlet weak var resetCarButton: UIButton!
-    
-    var locationManager: CLLocationManager?
-    
-    @IBAction func didTapResetCarButton(_ sender: Any) {
-        let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("choose option", comment: ""), preferredStyle: .actionSheet)
+/// 첫 화면. 사진과 메모를 받아 주차를 시작한다.
+final class MainViewController: UIViewController {
+    private let photoCard = CarPhotoCard(placeholderSymbol: "camera.fill",
+                                         placeholderTitle: L("photo.add"),
+                                         placeholderSubtitle: L("photo.hint"))
+    private let memoTextView = UITextView()
+    private let memoPlaceholderLabel = UILabel.make(L("memo.placeholder"),
+                                                    font: DS.Font.rounded(.body),
+                                                    color: .placeholderText)
+    private let startButton = UIButton.make(title: L("parking.start"), systemImage: "car.fill", style: .primary)
+    private let locationManager = CLLocationManager()
 
-        let deleteAction = UIAlertAction(title: NSLocalizedString("camera", comment: ""), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.openCamera()
-        })
-        
-        let resetAction = UIAlertAction(title: NSLocalizedString("reset", comment: ""), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.carImageView.showPlaceholder()
-            self.updateCarButtons()
-        })
-        
-        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-      })
-        optionMenu.addAction(deleteAction)
-        optionMenu.addAction(resetAction)
-        optionMenu.addAction(cancelAction)
-        
-        self.present(optionMenu, animated: true, completion: nil)
-    }
-    
-    @IBAction func didTabAddCarButton(_ sender: Any) {
-        self.openCamera()
-    }
-    
-    fileprivate func saveParkingInformation() {
-        UserDefaults.standard.set(true, forKey: "isParking")
-        UserDefaults.standard.set(Date(), forKey: "parkingTime")
-        
-        if memoTextField.text != NSLocalizedString("memo", comment: "") {
-            UserDefaults.standard.set(memoTextField.text, forKey: "memo")
-        } else {
-            UserDefaults.standard.removeObject(forKey: "memo")
-        }
-        
-        // 사진은 UserDefaults 가 아니라 파일로 저장한다. (재시작 후 사진 유실 버그 수정)
-        if carImageView.hasPhoto, let image = carImageView.image {
-            CarImageStore.save(image)
-        } else {
-            CarImageStore.delete()
-        }
-        
-        UserDefaults.standard.set(locationManager?.location?.coordinate.longitude, forKey: "longitude")
-        UserDefaults.standard.set(locationManager?.location?.coordinate.latitude, forKey: "latitude")
-    }
-    
-    @IBAction func didTapStartParkingButton(_ sender: Any) {
-        saveParkingInformation()
-        goParkingVC()
-    }
-    
-    func openCamera() {
-        let vc = UIImagePickerController()
-        // 카메라가 없는 기기(시뮬레이터 등)에서는 사진 앨범으로 대체한다.
-        vc.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
-        vc.delegate = self
-        present(vc, animated: true)
-    }
-    
-    fileprivate func initLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.requestWhenInUseAuthorization()
-        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager?.startUpdatingLocation()
-    }
-    
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        startParkingButton.layer.cornerRadius = startParkingButton.bounds.height / 2
-        
-        memoTextField.textColor = .gray
-        memoTextField.delegate = self
-        
-        startParkingButton.setTitle(NSLocalizedString("start parking", comment: ""), for: .normal)
-        memoTextField.text = NSLocalizedString("memo", comment: "")
-        
-        carImageView.isUserInteractionEnabled = true
-        carImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCarImageView)))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updateCarButtons()
+        view.backgroundColor = DS.Color.background
+        buildLayout()
+
+        photoCard.showsAccessoryWhenPhoto = true
+        photoCard.addTarget(self, action: #selector(didTapPhotoCard), for: .touchUpInside)
+        photoCard.accessoryButton.menu = photoMenu()
+        photoCard.accessoryButton.showsMenuAsPrimaryAction = true
+        startButton.addTarget(self, action: #selector(didTapStart), for: .touchUpInside)
+        memoTextView.delegate = self
+
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(goParkingVC),
+                                               selector: #selector(restoreSessionIfNeeded),
                                                name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
-        
-        initLocationManager()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationManager.startUpdatingLocation()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 앱을 완전히 종료했다 다시 켰을 때도 진행 중인 주차 화면으로 복귀한다.
-        goParkingVC()
+        // 앱을 완전히 종료했다 다시 켰을 때 진행 중인 주차 화면으로 복귀한다.
+        restoreSessionIfNeeded()
     }
-    
-    func updateCarButtons() {
-        addCarButton.isHidden = carImageView.hasPhoto
-        resetCarButton.isHidden = !carImageView.hasPhoto
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        locationManager.stopUpdatingLocation()
     }
-    
-    @objc func didTapCarImageView() {
-        guard addCarButton.isHidden else {
-            return
+
+    // MARK: - Layout
+
+    private func buildLayout() {
+        let titleLabel = UILabel.make(L("app.title"), font: DS.Font.rounded(.largeTitle, weight: .bold))
+        let subtitleLabel = UILabel.make(L("main.subtitle"),
+                                         font: DS.Font.rounded(.subheadline),
+                                         color: .secondaryLabel,
+                                         lines: 0)
+        let header = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        header.axis = .vertical
+        header.spacing = 4
+
+        let memoCard = CardView()
+        memoTextView.backgroundColor = .clear
+        memoTextView.font = DS.Font.rounded(.body)
+        memoTextView.adjustsFontForContentSizeCategory = true
+        memoTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        memoTextView.textContainer.lineFragmentPadding = 0
+        memoTextView.returnKeyType = .done
+        memoCard.addSubview(memoTextView)
+        memoTextView.pinEdges(to: memoCard)
+        memoCard.addSubview(memoPlaceholderLabel)
+        memoPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            memoPlaceholderLabel.topAnchor.constraint(equalTo: memoCard.topAnchor, constant: 16),
+            memoPlaceholderLabel.leadingAnchor.constraint(equalTo: memoCard.leadingAnchor, constant: 16),
+            memoPlaceholderLabel.trailingAnchor.constraint(lessThanOrEqualTo: memoCard.trailingAnchor, constant: -16),
+            memoCard.heightAnchor.constraint(equalToConstant: 112),
+        ])
+
+        let stack = UIStackView(arrangedSubviews: [header, photoCard, memoCard, startButton])
+        stack.axis = .vertical
+        stack.spacing = DS.spacing
+        stack.setCustomSpacing(24, after: header)
+        view.addSubview(stack)
+        stack.pinEdges(to: view.safeAreaLayoutGuide,
+                       insets: NSDirectionalEdgeInsets(top: 12, leading: DS.screenPadding,
+                                                       bottom: DS.screenPadding, trailing: DS.screenPadding))
+
+        // 사진 카드가 남는 세로 공간을 모두 차지한다.
+        photoCard.setContentHuggingPriority(.defaultLow, for: .vertical)
+        photoCard.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        photoCard.heightAnchor.constraint(greaterThanOrEqualToConstant: 180).isActive = true
+    }
+
+    private func photoMenu() -> UIMenu {
+        UIMenu(children: [
+            UIAction(title: L("photo.retake"), image: UIImage(systemName: "camera")) { [weak self] _ in
+                self?.openCamera()
+            },
+            UIAction(title: L("photo.remove"), image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+                self?.photoCard.image = nil
+            },
+        ])
+    }
+
+    // MARK: - Actions
+
+    @objc private func didTapPhotoCard() {
+        if let image = photoCard.image {
+            present(ImageDetailViewController(image: image), animated: true)
+        } else {
+            openCamera()
         }
-        
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailVC") as? ImageDetailViewController else { return }
-        vc.modalPresentationStyle = .fullScreen
-        vc.image = carImageView.image
-        self.present(vc, animated: true)
     }
-    
-    @objc func goParkingVC() {
-        guard UserDefaults.standard.bool(forKey: "isParking"), presentedViewController == nil else { return }
-        NotificationCenter.default.removeObserver(self)
-        
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ParkingVC") as? ParkingViewController else { return }
-        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        vc.modalPresentationStyle = .fullScreen
-        
-        // 저장된 값에서 복원해야 앱 재시작 후에도 사진과 메모가 유지된다.
-        vc.carImage = CarImageStore.load() ?? CarImageView.placeholder
-        vc.memoText = UserDefaults.standard.string(forKey: "memo")
-        self.present(vc, animated: true)
+
+    @objc private func didTapStart() {
+        view.endEditing(true)
+        let memo = memoTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let session = ParkingSession(startedAt: Date(),
+                                     memo: memo.isEmpty ? nil : memo,
+                                     coordinate: locationManager.location?.coordinate)
+        ParkingSessionStore.start(session, photo: photoCard.image)
+
+        let parkingVC = ParkingViewController(session: session, photo: photoCard.image)
+        present(parkingVC, animated: true) { [weak self] in
+            self?.resetForm()
+        }
     }
-    
-    func findAddr(lat: CLLocationDegrees, long: CLLocationDegrees) {
-        let findLocation = CLLocation(latitude: lat, longitude: long)
-        let geocoder = CLGeocoder()
-        let locale = Locale(identifier: "Ko-kr")
-        
-        geocoder.reverseGeocodeLocation(findLocation, preferredLocale: locale, completionHandler: {(placemarks, error) in
-            if let address: [CLPlacemark] = placemarks {
-                var myAdd: String = ""
-                if let area: String = address.last?.locality{
-                    myAdd += area
-                }
-                if let name: String = address.last?.name {
-                    myAdd += " "
-                    myAdd += name
-                }
-            }
-        })
+
+    @objc private func restoreSessionIfNeeded() {
+        guard presentedViewController == nil, let session = ParkingSessionStore.current else { return }
+        present(ParkingViewController(session: session, photo: CarImageStore.load()), animated: false)
+    }
+
+    private func openCamera() {
+        let picker = UIImagePickerController()
+        // 카메라가 없는 기기(시뮬레이터 등)에서는 사진 앨범으로 대체한다.
+        picker.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+
+    private func resetForm() {
+        photoCard.image = nil
+        memoTextView.text = ""
+        memoPlaceholderLabel.isHidden = false
     }
 }
 
-extension MainViewController: UINavigationControllerDelegate {
-}
+// MARK: - UIImagePickerControllerDelegate
 
-extension MainViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.originalImage] as? UIImage else {
-                print("No image found")
-                return
-            }
-            self.carImageView.image = image
-            picker.dismiss(animated: true)
+extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            photoCard.image = image
+        }
+        picker.dismiss(animated: true)
     }
 }
+
+// MARK: - UITextViewDelegate
 
 extension MainViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == NSLocalizedString("memo", comment: "") {
-            textView.text = ""
-        }
-        textView.textColor = .label
+    func textViewDidChange(_ textView: UITextView) {
+        memoPlaceholderLabel.isHidden = !textView.text.isEmpty
     }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
-            textView.text = NSLocalizedString("memo", comment: "")
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
         }
-        textView.textColor = .gray
+        return true
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+
 extension MainViewController: CLLocationManagerDelegate {
-    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            manager.startUpdatingLocation()
+        default:
+            break
+        }
+    }
 }

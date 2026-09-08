@@ -1,18 +1,35 @@
-/* 
+/*
   Localizable.strings
   parkingHere
-
-  Created by Juyeon on 2020/12/15.
-  
 */
 
-"memo" = "memorándum";
-"choose option" = "elegir opción";
-"camera" = "cámara";
-"reset" = "Reiniciar";
-"cancel" = "cancelar";
-"start parking" = "empezar a aparcar";
-"end parking" = "estacionamiento final";
-"track car" = "coche de pista";
-"no location info" = "sin información de ubicación";
-"allow location" = "por favor permita la ubicación de esta aplicación";
+"app.title" = "Encontrar mi coche";
+"main.subtitle" = "Recuerda dónde estacionaste con una foto y una nota";
+
+"photo.add" = "Agregar foto";
+"photo.hint" = "Toma una foto de tu lugar de estacionamiento";
+"photo.retake" = "Volver a tomar";
+"photo.remove" = "Eliminar foto";
+"photo.none" = "Sin foto";
+
+"memo.placeholder" = "Nota (p. ej., nivel B2, junto al pilar 47)";
+
+"parking.start" = "Iniciar estacionamiento";
+"parking.inProgress" = "Estacionado";
+"parking.startedAt %@" = "Inició a las %@";
+"parking.elapsed" = "Tiempo transcurrido";
+"parking.findCar" = "Encontrar mi coche";
+"parking.end" = "Finalizar";
+"parking.endConfirm.title" = "¿Finalizar el estacionamiento?";
+"parking.endConfirm.message" = "Se eliminarán la foto, la nota y la ubicación.";
+
+"map.title" = "Tu coche";
+"map.directions" = "Cómo llegar";
+"map.distance %@" = "A unos %@";
+
+"location.unavailable.title" = "Sin ubicación";
+"location.unavailable.message" = "No pudimos guardar tu ubicación al iniciar. Permite el acceso a la ubicación en Ajustes.";
+
+"common.cancel" = "Cancelar";
+"common.ok" = "Aceptar";
+"common.settings" = "Abrir Ajustes";

@@ -7,3 +7,6 @@
 */
 
 "CFBundleDisplayName" = "find my car";
+"NSCameraUsageDescription" = "Used to take a photo of your parking spot.";
+"NSLocationWhenInUseUsageDescription" = "Used to save where you parked and guide you back to your car.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Used to save where you parked and guide you back to your car.";

@@ -1,18 +1,35 @@
-/* 
+/*
   Localizable.strings
   parkingHere
-
-  Created by Juyeon on 2020/12/15.
-  
 */
 
-"memo" = "메모";
-"choose option" = "옵션을 선택해주세요";
-"camera" = "카메라";
-"reset" = "초기화";
-"cancel" = "취소";
-"start parking" = "주차를 시작합니다";
-"end parking" = "주차를 종료합니다";
-"track car" = "내 차 찾기";
-"no location info" = "위치 정보 없음";
-"allow location" = "앱의 위치 권한을 허용해주세요";
+"app.title" = "내 차를 찾아줘";
+"main.subtitle" = "주차한 자리를 사진과 메모로 기억하세요";
+
+"photo.add" = "사진 추가";
+"photo.hint" = "주차한 자리를 찍어 두세요";
+"photo.retake" = "다시 찍기";
+"photo.remove" = "사진 삭제";
+"photo.none" = "등록된 사진이 없어요";
+
+"memo.placeholder" = "메모 (예: B2 47번 기둥 옆)";
+
+"parking.start" = "주차 시작";
+"parking.inProgress" = "주차 중";
+"parking.startedAt %@" = "%@에 시작";
+"parking.elapsed" = "경과 시간";
+"parking.findCar" = "내 차 찾기";
+"parking.end" = "주차 종료";
+"parking.endConfirm.title" = "주차를 종료할까요?";
+"parking.endConfirm.message" = "사진과 메모, 위치 정보가 삭제됩니다.";
+
+"map.title" = "내 차 위치";
+"map.directions" = "길찾기";
+"map.distance %@" = "약 %@ 거리";
+
+"location.unavailable.title" = "위치 정보 없음";
+"location.unavailable.message" = "주차를 시작할 때 위치를 저장하지 못했어요. 설정에서 위치 권한을 허용해 주세요.";
+
+"common.cancel" = "취소";
+"common.ok" = "확인";
+"common.settings" = "설정 열기";

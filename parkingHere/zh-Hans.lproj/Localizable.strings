@@ -1,19 +1,35 @@
-/* 
+/*
   Localizable.strings
   parkingHere
-
-  Created by Juyeon on 2020/12/15.
-  
 */
 
+"app.title" = "找到我的车";
+"main.subtitle" = "用照片和备注记住停车位置";
 
-"memo" = "备忘录";
-"choose option" = "请选择选项";
-"camera" = "相机";
-"reset" = "重启";
-"cancel" = "取消";
-"start parking" = "开始停车";
-"end parking" = "末端停车";
-"track car" = "追踪我的车位置";
-"no location info" = "位置情報なし";
-"allow location" = "请允许该应用定位";
+"photo.add" = "添加照片";
+"photo.hint" = "拍下您的停车位置";
+"photo.retake" = "重拍";
+"photo.remove" = "删除照片";
+"photo.none" = "还没有照片";
+
+"memo.placeholder" = "备注（例如：B2层 47号柱旁）";
+
+"parking.start" = "开始停车";
+"parking.inProgress" = "停车中";
+"parking.startedAt %@" = "%@ 开始";
+"parking.elapsed" = "已停时间";
+"parking.findCar" = "找到我的车";
+"parking.end" = "结束停车";
+"parking.endConfirm.title" = "要结束停车吗？";
+"parking.endConfirm.message" = "照片、备注和位置信息将被删除。";
+
+"map.title" = "我的车位置";
+"map.directions" = "导航";
+"map.distance %@" = "距离约 %@";
+
+"location.unavailable.title" = "没有位置信息";
+"location.unavailable.message" = "开始停车时未能保存位置。请在“设置”中允许定位。";
+
+"common.cancel" = "取消";
+"common.ok" = "好";
+"common.settings" = "打开设置";

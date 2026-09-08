@@ -6,3 +6,6 @@
   
 */
 "CFBundleDisplayName" = "내 차를 찾아줘";
+"NSCameraUsageDescription" = "주차한 자리를 사진으로 남기는 데 사용합니다.";
+"NSLocationWhenInUseUsageDescription" = "주차 위치를 저장하고 차까지 안내하는 데 사용합니다.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "주차 위치를 저장하고 차까지 안내하는 데 사용합니다.";

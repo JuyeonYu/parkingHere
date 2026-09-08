@@ -1,18 +1,35 @@
-/* 
+/*
   Localizable.strings
   parkingHere
-
-  Created by Juyeon on 2020/12/15.
-  
 */
 
-"memo" = "memo";
-"choose option" = "Choose Option";
-"camera" = "Camera";
-"reset" = "Reset";
-"cancel" = "Cancel";
-"start parking" = "Start parking";
-"end parking" = "End parking";
-"track car" = "Track Car";
-"no location info" = "No location information";
-"allow location" = "Please allow to get your location for this app";
+"app.title" = "Find My Car";
+"main.subtitle" = "Remember where you parked with a photo and a note";
+
+"photo.add" = "Add Photo";
+"photo.hint" = "Take a photo of your parking spot";
+"photo.retake" = "Retake";
+"photo.remove" = "Remove Photo";
+"photo.none" = "No photo added";
+
+"memo.placeholder" = "Note (e.g. Level B2, next to pillar 47)";
+
+"parking.start" = "Start Parking";
+"parking.inProgress" = "Parked";
+"parking.startedAt %@" = "Started at %@";
+"parking.elapsed" = "Elapsed";
+"parking.findCar" = "Find My Car";
+"parking.end" = "End Parking";
+"parking.endConfirm.title" = "End parking?";
+"parking.endConfirm.message" = "The photo, note and location will be removed.";
+
+"map.title" = "Your Car";
+"map.directions" = "Directions";
+"map.distance %@" = "About %@ away";
+
+"location.unavailable.title" = "No Location";
+"location.unavailable.message" = "We couldn't save your location when parking started. Allow location access in Settings.";
+
+"common.cancel" = "Cancel";
+"common.ok" = "OK";
+"common.settings" = "Open Settings";

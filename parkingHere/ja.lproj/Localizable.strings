@@ -1,18 +1,35 @@
-/* 
+/*
   Localizable.strings
   parkingHere
-
-  Created by Juyeon on 2020/12/15.
-  
 */
 
-"memo" = "メモ";
-"choose option" = "オプションを選択してください";
-"camera" = "カメラ";
-"reset" = "リセット";
-"cancel" = "キャンセル";
-"start parking" = "駐車を開始します";
-"end parking" = "駐車終了";
-"track car" = "私の車の位置を追跡する";
-"no location info" = "位置情報なし";
-"allow location" = "このアプリの場所を許可してください";
+"app.title" = "私の車を見つける";
+"main.subtitle" = "写真とメモで駐車した場所を覚えておきましょう";
+
+"photo.add" = "写真を追加";
+"photo.hint" = "駐車した場所を撮影しておきましょう";
+"photo.retake" = "撮り直す";
+"photo.remove" = "写真を削除";
+"photo.none" = "写真がありません";
+
+"memo.placeholder" = "メモ（例：B2 47番柱の横）";
+
+"parking.start" = "駐車を開始";
+"parking.inProgress" = "駐車中";
+"parking.startedAt %@" = "%@に開始";
+"parking.elapsed" = "経過時間";
+"parking.findCar" = "車を探す";
+"parking.end" = "駐車を終了";
+"parking.endConfirm.title" = "駐車を終了しますか？";
+"parking.endConfirm.message" = "写真、メモ、位置情報が削除されます。";
+
+"map.title" = "車の位置";
+"map.directions" = "経路";
+"map.distance %@" = "約%@先";
+
+"location.unavailable.title" = "位置情報なし";
+"location.unavailable.message" = "駐車開始時に位置情報を保存できませんでした。設定で位置情報を許可してください。";
+
+"common.cancel" = "キャンセル";
+"common.ok" = "OK";
+"common.settings" = "設定を開く";
